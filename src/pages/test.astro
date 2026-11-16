@@ -1,0 +1,150 @@
+---
+import Layout from "../layouts/Layout.astro";
+import test from "../data/test.json";
+
+// Orde visual: En desacordo → De acordo (esquerda → dereita)
+const escala = [...test.meta.escala_respostas].reverse();
+
+const tam = ["h-12 w-12", "h-10 w-10", "h-8 w-8", "h-7 w-7", "h-8 w-8", "h-10 w-10", "h-12 w-12"];
+const cor = [
+  "border-rose-600 peer-checked:bg-rose-600",
+  "border-rose-500 peer-checked:bg-rose-500",
+  "border-rose-300 peer-checked:bg-rose-300",
+  "border-neutral-400 peer-checked:bg-neutral-400",
+  "border-emerald-300 peer-checked:bg-emerald-300",
+  "border-emerald-500 peer-checked:bg-emerald-500",
+  "border-emerald-600 peer-checked:bg-emerald-600",
+];
+---
+
+<Layout title="Test · Compás Político Galego">
+  <section class="mx-auto max-w-3xl px-4 py-10">
+    <div class="flex items-center justify-between text-sm text-tinta/60">
+      <span id="contador">—</span>
+      <span id="tema" class="rounded-full bg-galego-50 px-3 py-1 text-xs font-semibold text-galego-700"></span>
+    </div>
+    <div class="mt-3 h-2 overflow-hidden rounded-full bg-lina">
+      <div id="progreso" class="h-full bg-pino transition-all duration-300" style="width:0%"></div>
+    </div>
+
+    <div class="mt-8 rounded-3xl border border-lina bg-papel p-6 sm:p-10">
+      <h1
+        id="afirmacion"
+        class="flex min-h-[8rem] items-center justify-center text-center text-2xl font-semibold leading-snug sm:text-3xl"
+      >
+      </h1>
+
+      <fieldset class="mt-10">
+        <legend class="sr-only">A túa resposta</legend>
+        <div class="flex items-center justify-between gap-3">
+          <span class="hidden w-24 text-right text-sm font-bold leading-tight text-rose-700 sm:block">
+            En desacordo
+          </span>
+          <div class="flex flex-1 items-center justify-between">
+            {
+              escala.map((e, i) => (
+                <label class="flex cursor-pointer flex-col items-center gap-2" title={e.etiqueta}>
+                  <input type="radio" name="resposta" value={e.multiplicador} class="peer sr-only" />
+                  <span
+                    class={`rounded-full border-2 bg-white transition hover:scale-110 peer-focus-visible:ring-4 peer-focus-visible:ring-galego-500/40 ${tam[i]} ${cor[i]}`}
+                  />
+                  <span class="hidden text-[10px] font-semibold text-tinta/40 sm:block">{i + 1}</span>
+                </label>
+              ))
+            }
+          </div>
+          <span class="hidden w-24 text-sm font-bold leading-tight text-emerald-700 sm:block">De acordo</span>
+        </div>
+        <div class="mt-3 flex justify-between text-xs font-bold sm:hidden">
+          <span class="text-rose-700">En desacordo</span>
+          <span class="text-emerald-700">De acordo</span>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="mt-6 flex items-center justify-between text-sm">
+      <button
+        id="atras"
+        class="rounded-lg px-3 py-2 font-medium text-tinta/70 transition hover:bg-lina disabled:opacity-30"
+      >
+        ← Anterior
+      </button>
+      <span class="hidden text-tinta/40 sm:inline">Atallos: teclas 1–7</span>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import test from "../data/test.json";
+  import { escollerPreguntas } from "../lib/eixos";
+  import type { Pregunta } from "../lib/scoring";
+
+  const modoId = new URLSearchParams(location.search).get("modo") ?? "neutro";
+  const modos = test.meta.modos as Record<string, { total: number }>;
+  const total = (modos[modoId] ?? modos.neutro).total;
+  const preguntas = escollerPreguntas(test.preguntas as Pregunta[], total);
+
+  const $ = (id: string) => document.getElementById(id)!;
+  const elContador = $("contador");
+  const elTema = $("tema");
+  const elProgreso = $("progreso");
+  const elAfirmacion = $("afirmacion");
+  const btnAtras = $("atras") as HTMLButtonElement;
+  const radios = Array.from(document.querySelectorAll<HTMLInputElement>('input[name="resposta"]'));
+
+  const respostas: (number | undefined)[] = new Array(preguntas.length).fill(undefined);
+  let i = 0;
+  let timer: number | undefined;
+
+  function pintar() {
+    const p = preguntas[i];
+    elContador.textContent = `Pregunta ${i + 1} de ${preguntas.length}`;
+    elTema.textContent = p.tematica;
+    elProgreso.style.width = `${(i / preguntas.length) * 100}%`;
+    elAfirmacion.textContent = p.afirmacion;
+    btnAtras.disabled = i === 0;
+    radios.forEach((r) => {
+      r.checked = respostas[i] !== undefined && Number(r.value) === respostas[i];
+    });
+  }
+
+  function responder(m: number) {
+    respostas[i] = m;
+    clearTimeout(timer);
+    timer = window.setTimeout(() => {
+      if (i < preguntas.length - 1) {
+        i++;
+        pintar();
+      } else {
+        finalizar();
+      }
+    }, 220);
+  }
+
+  function finalizar() {
+    const mapa: Record<number, number> = {};
+    preguntas.forEach((p, idx) => {
+      const r = respostas[idx];
+      if (r !== undefined) mapa[p.id] = r;
+    });
+    localStorage.setItem("cpg:resultado", JSON.stringify({ modo: modoId, respostas: mapa }));
+    location.href = "/resultado";
+  }
+
+  radios.forEach((r) => r.addEventListener("click", () => responder(Number(r.value))));
+
+  btnAtras.addEventListener("click", () => {
+    clearTimeout(timer);
+    if (i > 0) {
+      i--;
+      pintar();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    const n = parseInt(e.key, 10);
+    if (n >= 1 && n <= radios.length) radios[n - 1].click();
+  });
+
+  pintar();
+</script>

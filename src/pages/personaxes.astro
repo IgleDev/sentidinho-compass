@@ -1,0 +1,60 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Compass from "../components/Compass.astro";
+import Avatar from "../components/Avatar.astro";
+import { getPersonaxes } from "../lib/personaxes";
+
+const todas = await getPersonaxes();
+const lista = [...todas].sort((a, b) => a.nome.localeCompare(b.nome, "gl"));
+---
+
+<Layout title="Personaxes · Compás Político Galego">
+  <section class="mx-auto max-w-5xl px-4 py-12">
+    <h1 class="text-4xl font-extrabold tracking-tight">Mapa das personaxes</h1>
+    <p class="mt-3 max-w-2xl text-tinta/70">
+      {lista.length} figuras da historia, a cultura e a política galegas situadas segundo o seu
+      posicionamento económico e territorial. Pasa o rato por riba dun punto para ver o nome.
+    </p>
+
+    <div class="mx-auto mt-8 max-w-2xl">
+      <Compass personaxes={todas} />
+    </div>
+
+    <div class="mt-12">
+      <input
+        id="buscador"
+        type="search"
+        placeholder="Buscar personaxe, corrente ou época…"
+        class="w-full rounded-xl border border-lina bg-papel px-4 py-3 outline-none focus:border-pino focus:ring-4 focus:ring-pino/20"
+      />
+    </div>
+
+    <div id="grella" class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        lista.map((p) => (
+          <a
+            href={`/personaxe/${p.id}`}
+            data-busca={`${p.nome} ${p.taxonomia} ${p.anos}`.toLowerCase()}
+            class="flex items-center gap-4 rounded-2xl border border-lina bg-papel p-4 transition hover:border-pino hover:shadow"
+          >
+            <Avatar nome={p.nome} imaxe={p.imaxe} class="h-16 w-16 text-base" />
+            <div class="min-w-0">
+              <p class="font-semibold leading-tight">{p.nome}</p>
+              <p class="mt-0.5 text-xs text-tinta/60">{p.anos}</p>
+              <p class="mt-1 text-sm text-tinta/70">{p.taxonomia}</p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const input = document.getElementById("buscador") as HTMLInputElement;
+  const cartas = document.querySelectorAll<HTMLElement>("#grella [data-busca]");
+  input.addEventListener("input", () => {
+    const q = input.value.trim().toLowerCase();
+    cartas.forEach((c) => c.classList.toggle("hidden", !!q && !c.dataset.busca!.includes(q)));
+  });
+</script>

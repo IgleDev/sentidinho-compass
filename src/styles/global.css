@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Museo Moderno", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Museo Moderno", ui-sans-serif, system-ui, sans-serif;
+
+  --color-crema: #f6f4f0;
+  --color-papel: #fbfaf7;
+  --color-lina: #e6e1d8;
+  --color-tinta: #222222;
+  --color-sec: #555555;
+  --color-realce: #c53f56;
+
+  /* alias para non romper o código anterior */
+  --color-grana: #c53f56;
+  --color-pino: #c53f56;
+  --color-galego-50: #fbeef0;
+  --color-galego-100: #f5d5db;
+  --color-galego-500: #c53f56;
+  --color-galego-600: #b0344a;
+  --color-galego-700: #8f2a3c;
+}
+
+html { scroll-behavior: smooth; }
+body { @apply bg-crema text-tinta antialiased; }
+h1, h2, h3 { font-family: var(--font-display); }
+
+#compass a .punto {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.2s, fill 0.2s, opacity 0.2s;
+}
+#compass a:hover .punto,
+#compass a.iluminado .punto {
+  transform: scale(1.9);
+  fill: #c53f56;
+  opacity: 1;
+}
+#compass a .halo {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+#compass a:hover .halo,
+#compass a.iluminado .halo {
+  opacity: 0.28;
+}
+#compass a.iluminado text {
+  opacity: 1 !important;
+}

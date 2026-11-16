@@ -1,0 +1,228 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ModoCard from "../components/ModoCard.astro";
+import Compass from "../components/Compass.astro";
+import FiguraCard from "../components/FiguraCard.astro";
+import { getPersonaxes } from "../lib/personaxes";
+import { EIXOS } from "../lib/eixos";
+import { icono, ICO } from "../lib/icons";
+import test from "../data/test.json";
+import SEO from "../components/SEO.astro";
+
+const todas = await getPersonaxes();
+
+const destacadas = [
+  "moncho_reboiras",
+  "castelao",
+  "xose_manuel_beiras",
+  "rosalia_de_castro",
+  "ramon_piñeiro",
+  "vicente_risco",
+  "concepcion_arenal",
+  "manuel_fraga",
+]
+  .map((id) => todas.find((p) => p.id === id))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p));
+
+const duracion: Record<string, string> = {
+  rapido: "≈ 5 minutos",
+  neutro: "≈ 10 minutos",
+  preciso: "≈ 20 minutos",
+};
+const modos = Object.entries(test.meta.modos).map(([id, m]) => ({ id, ...m }));
+
+const cifras = [
+  { n: test.preguntas.length, t: "afirmacións" },
+  { n: EIXOS.length, t: "eixos ideolóxicos" },
+  { n: todas.length, t: "figuras do país" },
+  { n: 6, t: "temáticas" },
+];
+
+const pasos = [
+  {
+    ico: "book",
+    t: "Le cada afirmación",
+    d: "Economía, territorio, lingua, memoria, sociedade e estratexia política. Sen trampas nin respostas correctas.",
+  },
+  {
+    ico: "scale",
+    t: "Posiciónate",
+    d: "De totalmente en desacordo a totalmente de acordo, nunha escala de sete puntos.",
+  },
+  {
+    ico: "map",
+    t: "Descobre o teu mapa",
+    d: "O teu punto no compás, os teus 12 eixos e as figuras de Galiza máis preto das túas ideas.",
+  },
+];
+---
+
+<Layout>
+  <SEO
+    slot="head"
+    title="Compás Político Galego · Test ideolóxico con figuras de Galiza"
+    description="Test político galego de 12 eixos: responde a afirmacións sobre economía, territorio, lingua e memoria e descubre que figuras como Castelao, Rosalía de Castro ou Beiras están máis preto das túas ideas."
+    keywords={[
+      "compás político galego",
+      "test político Galiza",
+      "test ideolóxico",
+      "nacionalismo galego",
+      "Castelao",
+      "galeguismo",
+      "12 eixos",
+    ]}
+  />
+  <section class="mx-auto grid max-w-6xl items-center gap-12 px-4 pb-16 pt-14 lg:grid-cols-[1.05fr_0.95fr] lg:pt-20">
+    <div>
+      <p class="inline-flex items-center gap-2 rounded-full border border-lina bg-papel px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-realce">
+        <span class="h-1.5 w-1.5 rounded-full bg-realce"></span>
+        Compás político galego
+      </p>
+      <h1 class="mt-5 text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl">
+        Onde te sitúas entre os <span class="text-realce">grandes nomes</span> de Galiza?
+      </h1>
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-sec">
+        Responde a unha serie de afirmacións sobre economía, territorio, lingua, memoria e poder, e descubre que
+        figuras da historia, a cultura e a política galegas están máis preto das túas ideas.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a
+          href="/test?modo=neutro"
+          class="rounded-xl bg-realce px-6 py-3.5 text-sm font-bold text-white shadow-sm transition hover:opacity-90"
+        >
+          Comezar o test
+        </a>
+        <a
+          href="/personaxes"
+          class="rounded-xl border border-lina bg-papel px-6 py-3.5 text-sm font-bold transition hover:bg-lina/50"
+        >
+          Explorar o mapa
+        </a>
+      </div>
+      <p class="mt-4 text-xs text-sec">Gratuíto · sen rexistro · os teus datos quedan no teu navegador</p>
+    </div>
+
+    <div class="relative">
+      <div class="absolute -inset-4 -z-10 rounded-[40px] bg-gradient-to-br from-realce/15 to-transparent blur-2xl"></div>
+      <div class="rotate-1 rounded-3xl border border-lina bg-papel p-3 shadow-xl transition hover:rotate-0">
+        <Compass personaxes={todas} />
+      </div>
+      <span class="absolute -bottom-3 left-6 rounded-full bg-tinta px-4 py-1.5 text-xs font-bold text-crema shadow-lg">
+        Pasa o rato por riba dun punto
+      </span>
+    </div>
+  </section>
+
+  <!-- CIFRAS -->
+  <section class="border-y border-lina bg-papel">
+    <div class="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 py-8 sm:grid-cols-4">
+      {
+        cifras.map((c) => (
+          <div class="text-center">
+            <p class="text-4xl font-extrabold text-realce">{c.n}</p>
+            <p class="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-sec">{c.t}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-20">
+    <h2 class="text-center text-3xl font-extrabold sm:text-4xl">Como funciona</h2>
+    <div class="mt-12 grid gap-5 md:grid-cols-3">
+      {
+        pasos.map((p, i) => (
+          <article class="relative rounded-3xl border border-lina bg-papel p-7">
+            <span class="absolute right-6 top-5 text-5xl font-extrabold text-lina">0{i + 1}</span>
+            <span
+              class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-realce/10 text-realce"
+              set:html={icono(p.ico, "h-6 w-6")}
+            />
+            <h3 class="mt-5 text-xl font-bold">{p.t}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-sec">{p.d}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-4 pb-20">
+    <h2 class="text-center text-3xl font-extrabold sm:text-4xl">Escolle un modo</h2>
+    <p class="mx-auto mt-3 max-w-lg text-center text-sec">
+      Cantas máis preguntas respondas, máis fino será o teu perfil.
+    </p>
+    <div class="mt-10 grid gap-4 sm:grid-cols-3">
+      {
+        modos.map((m) => (
+          <ModoCard
+            id={m.id}
+            nome={m.nome}
+            total={m.total}
+            duracion={duracion[m.id] ?? ""}
+            destacado={m.id === "neutro"}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="border-y border-lina bg-papel">
+    <div class="mx-auto max-w-6xl px-4 py-20">
+      <p class="text-center text-xs font-bold uppercase tracking-[0.2em] text-realce">Que che pode saír</p>
+      <h2 class="mt-2 text-center text-3xl font-extrabold sm:text-4xl">Cada perfil, unha tarxeta</h2>
+      <p class="mx-auto mt-3 max-w-xl text-center text-sec">
+        Ao rematar recibes unha tarxeta compartible coa figura máis afín, os teus 12 eixos e a túa posición no mapa.
+        Estes son algúns dos arquetipos que podes atopar.
+      </p>
+
+      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {destacadas.map((p) => <FiguraCard p={p} />)}
+      </div>
+
+      <p class="mt-10 text-center">
+        <a href="/personaxes" class="text-sm font-bold text-realce hover:underline">
+          Ver as {todas.length} personaxes →
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-20">
+    <h2 class="text-center text-3xl font-extrabold sm:text-4xl">Doce eixos, un só perfil</h2>
+    <p class="mx-auto mt-3 max-w-xl text-center text-sec">
+      Máis alá de esquerda e dereita: o test mide doce dimensións pensadas para a realidade galega.
+    </p>
+    <div class="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        EIXOS.map((e) => (
+          <article class="rounded-2xl border border-lina bg-papel p-5">
+            <p class="flex items-baseline gap-2">
+              <span class="text-xs font-bold text-realce">{e.n}</span>
+              <span class="text-lg font-bold">{e.titulo}</span>
+            </p>
+            <p class="mt-3 flex items-center justify-between gap-2 text-xs font-bold">
+              <span class="flex items-center gap-1.5" set:html={icono(ICO[e.id][0]) + e.esq} />
+              <span class="flex items-center gap-1.5 text-right" set:html={e.dir + icono(ICO[e.id][1])} />
+            </p>
+            <div class="mt-2 h-1.5 rounded-full bg-gradient-to-r from-realce/70 via-lina to-tinta/70" />
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pb-20">
+    <div class="overflow-hidden rounded-[36px] bg-gradient-to-br from-[#8d2136] to-[#4f0f1c] px-6 py-14 text-center text-crema sm:px-12">
+      <h2 class="text-3xl font-extrabold sm:text-4xl">Preparado para atopar o teu sitio?</h2>
+      <p class="mx-auto mt-3 max-w-lg text-crema/75">
+        Dez minutos, doce eixos e unha figura de Galiza que quizais non esperabas.
+      </p>
+      <a
+        href="/test?modo=neutro"
+        class="mt-8 inline-block rounded-xl bg-crema px-7 py-3.5 text-sm font-bold text-[#4f0f1c] transition hover:opacity-90"
+      >
+        Comezar o test
+      </a>
+    </div>
+  </section>
+</Layout>

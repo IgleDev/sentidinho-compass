@@ -1,0 +1,95 @@
+---
+export interface Props {
+  personaxes: { id: string; nome: string; coordenadas: { x: number; y: number } }[];
+  destacar?: string;
+}
+const { personaxes, destacar } = Astro.props;
+
+const S = 27;
+const C = 300;
+const px = (x: number) => C + x * S;
+const py = (y: number) => C + y * S; // soberanismo (y+) abaixo
+const ticks = [-10, -5, 0, 5, 10];
+---
+
+<svg
+  id="compass"
+  viewBox="0 0 600 600"
+  class="h-auto w-full select-none rounded-2xl border border-lina bg-white"
+  role="img"
+  aria-label="Mapa ideolóxico de figuras galegas"
+>
+  <rect x="30" y="30" width="270" height="270" fill="#fef3c7" opacity="0.55" />
+  <rect x="300" y="30" width="270" height="270" fill="#e5e7eb" opacity="0.7" />
+  <rect x="30" y="300" width="270" height="270" fill="#fee2e2" opacity="0.55" />
+  <rect x="300" y="300" width="270" height="270" fill="#dbeafe" opacity="0.55" />
+
+  {
+    ticks.map((t) => (
+      <>
+        <line x1={px(t)} y1="30" x2={px(t)} y2="570" stroke="#fff" stroke-width="1" />
+        <line x1="30" y1={py(t)} x2="570" y2={py(t)} stroke="#fff" stroke-width="1" />
+      </>
+    ))
+  }
+  <line x1="300" y1="30" x2="300" y2="570" stroke="#555555" stroke-width="1.5" />
+  <line x1="30" y1="300" x2="570" y2="300" stroke="#555555" stroke-width="1.5" />
+
+  <g font-size="13" font-weight="700" fill="#555555" opacity="0.8">
+    <text x="42" y="52">Centralismo colectivista</text>
+    <text x="558" y="52" text-anchor="end">Centralismo liberal</text>
+    <text x="42" y="560">Soberanismo colectivista</text>
+    <text x="558" y="560" text-anchor="end">Soberanismo liberal</text>
+  </g>
+
+  <g font-size="11" fill="#555555">
+    <text x="300" y="20" text-anchor="middle">▲ Centralismo</text>
+    <text x="300" y="590" text-anchor="middle">▼ Soberanismo</text>
+    <text x="8" y="304" transform="rotate(-90 8 304)" text-anchor="middle">◄ Colectivismo</text>
+    <text x="592" y="296" transform="rotate(90 592 296)" text-anchor="middle">Liberalismo ►</text>
+  </g>
+
+  {
+    personaxes.map((p) => {
+      const cx = px(p.coordenadas.x);
+      const cy = py(p.coordenadas.y);
+      const activo = destacar === p.id;
+      const apagado = destacar && !activo;
+      const dereita = p.coordenadas.x > 3;
+      return (
+        <a href={`/personaxe/${p.id}`} data-id={p.id} class="group cursor-pointer">
+          <circle class="halo" cx={cx} cy={cy} r="16" fill="#c53f56" />
+          <circle
+            class="punto"
+            cx={cx}
+            cy={cy}
+            r={activo ? 9 : 5.5}
+            fill={activo ? "#c53f56" : "#222222"}
+            opacity={apagado ? 0.25 : 0.85}
+            stroke="#fff"
+            stroke-width="1.5"
+          />
+          <text
+            x={dereita ? cx - 12 : cx + 12}
+            y={cy + 4}
+            font-size="12"
+            font-weight="600"
+            text-anchor={dereita ? "end" : "start"}
+            fill="#222222"
+            stroke="#fff"
+            stroke-width="3"
+            paint-order="stroke"
+            class:list={[
+              "pointer-events-none transition-opacity",
+              activo ? "opacity-100" : "opacity-0 group-hover:opacity-100",
+            ]}
+          >
+            {p.nome}
+          </text>
+        </a>
+      );
+    })
+  }
+
+  <g id="capa-usuario"></g>
+</svg>

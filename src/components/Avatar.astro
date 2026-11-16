@@ -1,0 +1,39 @@
+---
+interface Props {
+  nome: string;
+  imaxe?: string | null;
+  class?: string;
+  redondo?: boolean;
+}
+const { nome, imaxe, class: cls = "h-12 w-12 text-sm", redondo = true } = Astro.props;
+const iniciais = nome
+  .replace(/\(.*\)/, "")
+  .split(" ")
+  .filter(Boolean)
+  .slice(0, 2)
+  .map((s) => s[0])
+  .join("")
+  .toUpperCase();
+---
+
+<span
+  class:list={[
+    "relative inline-flex shrink-0 items-center justify-center overflow-hidden bg-galego-100 font-bold text-galego-700",
+    redondo ? "rounded-full" : "rounded-2xl",
+    cls,
+  ]}
+>
+  {iniciais}
+  {
+    imaxe && (
+      <img
+        src={imaxe}
+        alt={nome}
+        loading="lazy"
+        referrerpolicy="no-referrer"
+        class="absolute inset-0 h-full w-full object-cover object-top"
+        onerror="this.remove()"
+      />
+    )
+  }
+</span>

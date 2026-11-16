@@ -1,0 +1,26 @@
+---
+interface Props {
+  id: string;
+  nome: string;
+  total: number;
+  duracion: string;
+  destacado?: boolean;
+}
+const { id, nome, total, duracion, destacado = false } = Astro.props;
+---
+
+<a
+  href={`/test?modo=${id}`}
+  class:list={[
+    "group flex flex-col rounded-2xl border p-6 transition hover:-translate-y-0.5 hover:shadow-lg",
+    destacado
+      ? "border-galego-500 bg-galego-50"
+      : "border-neutral-200 bg-white hover:border-galego-500",
+  ]}
+>
+  <span class="text-4xl font-extrabold text-galego-600">{total}</span>
+  <span class="mt-1 text-sm font-semibold uppercase tracking-wide text-neutral-500">preguntas</span>
+  <span class="mt-4 font-semibold">{nome.replace(/\s*\(.*\)/, "")}</span>
+  <span class="text-sm text-neutral-500">{duracion}</span>
+  <span class="mt-5 text-sm font-medium text-galego-600 group-hover:underline">Comezar →</span>
+</a>

@@ -1,0 +1,539 @@
+{
+  "meta": {
+    "version": "7.0",
+    "titulo": "Political Compass Galego - Edición Ultra-Calibrada",
+    "eixos": {
+      "x_economico": {
+        "min": -10,
+        "max": 10,
+        "etiqueta_min": "Colectivismo / Marxismo / Agrarismo radical",
+        "etiqueta_max": "Capitalismo / Liberalismo / Corporativismo"
+      },
+      "y_xuridico_territorial": {
+        "min": -10,
+        "max": 10,
+        "etiqueta_min": "Centralismo estatal / Autoritarismo / Rexionalismo subalterno",
+        "etiqueta_max": "Soberanismo / Independentismo / Ruptura confederal"
+      }
+    }
+  },
+  "personaxes": [
+    {
+      "id": "fernando_silva_sande",
+      "nome": "Fernando Silva Sande",
+      "anos": "1954–",
+      "taxonomia": "Independentismo armado / Marxismo-Leninismo revolucionario",
+      "coordenadas": { "x": -9.5, "y": 9.5 },
+      "marco_xuridico": "Ruptura radical co ordenamento constitucional español e vía insurreccional.",
+      "posicion_teorica": "Dirixente do Exército Guerrilheiro do Povo Galego Ceive. Máximo expoñente da esquerda independentista armada dos anos 80.",
+      "obra_clave": "Manifestos e accións do EGPGC",
+      "cita": "«A opresión colonial só se combate desde a resposta directa e radical.»"
+    },
+    {
+      "id": "ricardo_mella",
+      "nome": "Ricardo Mella",
+      "anos": "1861–1925",
+      "taxonomia": "Anarcocomunismo / Federalismo libertario",
+      "coordenadas": { "x": -10.0, "y": 3.0 },
+      "marco_xuridico": "Abolición total do Estado e de calquera marco xurídico institucional; federación libre de comunas.",
+      "posicion_teorica": "Un dos teóricos libertarios máis brillantes a nivel mundial. Rexeitava tanto o centralismo como o nacionalismo estatal, apostando pola autoxestión obreira.",
+      "obra_clave": "Ideario (1926) / La ley del número",
+      "cita": "«Non queremos cambiar de amo nin de bandeira; queremos abolir toda autoridade imposta.»"
+    },
+    {
+      "id": "bautista_alvarez",
+      "nome": "Bautista Álvarez",
+      "anos": "1933–2017",
+      "taxonomia": "Marxismo-Leninismo / Independentismo patriótico",
+      "coordenadas": { "x": -9.0, "y": 9.0 },
+      "marco_xuridico": "Autodeterminación e construción dun Estado socialista galego alleo a Madrid.",
+      "posicion_teorica": "Presidente histórico da UPG. Defensor da primacía da liberación nacional unida á emancipación de clase.",
+      "obra_clave": "Escritos políticos na prensa nacionalista",
+      "cita": "«Non hai liberación social posible sen liberación nacional previa.»"
+    },
+    {
+      "id": "roi_xordo",
+      "nome": "Roi Xordo",
+      "anos": "Século XV",
+      "taxonomia": "Antifeudalismo popular / Insurrección armada",
+      "coordenadas": { "x": -9.0, "y": 8.5 },
+      "marco_xuridico": "Destrucción por la fuerza dos marcos xurídicos señoriais e derribo de fortalezas.",
+      "posicion_teorica": "Líder das Irmandades Irmandiñas en Compostela. Símbolo histórico da revolta contra o abuso feudal.",
+      "obra_clave": "Crónicas das Guerras Irmandiñas",
+      "cita": "«Non quedará pedra sobre pedra dos castelos onde se esmaga ao noso pobo.»"
+    },
+    {
+      "id": "xose_manuel_beiras",
+      "nome": "Xosé Manuel Beiras",
+      "anos": "1936–",
+      "taxonomia": "Socialismo ecolóxico / Nacionalismo anticapitalista",
+      "coordenadas": { "x": -8.5, "y": 8.5 },
+      "marco_xuridico": "Ruptura co réxime do 78 e soberanía nacional baseada na teoría da dependencia.",
+      "posicion_teorica": "Economista e figura central do nacionalismo galego moderno. Fundador do PSG, BNG e Anova.",
+      "obra_clave": "O atraso económico de Galicia (1972)",
+      "cita": "«Galicia é unha nación colonizada dentro do propio Estado español.»"
+    },
+    {
+      "id": "mendez_ferrin",
+      "nome": "Xosé Luís Méndez Ferrín",
+      "anos": "1938–",
+      "taxonomia": "Marxismo / Independentismo cultural e político",
+      "coordenadas": { "x": -8.0, "y": 8.8 },
+      "marco_xuridico": "Soberanía nacional plena e anticolonialismo cultural e político.",
+      "posicion_teorica": "Cofundador da UPG, académioco e un dos narradores máis importantes da historia de Galicia.",
+      "obra_clave": "O cadro de bitácora (1961) / Breoir (2018)",
+      "cita": "«Non hai patria sen lingua nin hai liberdade sen soberanía.»"
+    },
+    {
+      "id": "moncho_reboiras",
+      "nome": "Ramón Reboiras Noia (Moncho Reboiras)",
+      "anos": "1950–1975",
+      "taxonomia": "Marxismo revolucionario / Sindicalismo nacionalista",
+      "coordenadas": { "x": -8.0, "y": 8.6 },
+      "marco_xuridico": "Ruptura total co franquismo e poder obreiro galego.",
+      "posicion_teorica": "Militante comunista e sindicalista da UPG asesinado polo franquismo. Articulador do movemento obreiro galego.",
+      "obra_clave": "Teoría e práctica sindical na Galiza",
+      "cita": "«A nosa loita é pola liberdade total de Galicia e dos traballadores.»"
+    },
+    {
+      "id": "celso_emilio_ferreiro",
+      "nome": "Celso Emilio Ferreiro",
+      "anos": "1912–1979",
+      "taxonomia": "Socialismo democrático / Antifranquismo militante",
+      "coordenadas": { "x": -7.5, "y": 8.0 },
+      "marco_xuridico": "Ruptura democrática e xustiza social antifeudal e antifascista.",
+      "posicion_teorica": "O poeta civil por excelencia da resistencia galega e fundador das Mocedades Galeguistas.",
+      "obra_clave": "Longa noite de pedra (1962)",
+      "cita": "«Deitado fronte ao mar, / teño que dicirche non, / non á inxustiza e non á opresión.»"
+    },
+    {
+      "id": "antonia_pazos_figueroa",
+      "nome": "Antonia Pazos Figueroa",
+      "anos": "1867–1936",
+      "taxonomia": "Agrarismo radical / Sindicalismo labrego",
+      "coordenadas": { "x": -7.5, "y": -1.0 },
+      "marco_xuridico": "Abolición forzosa do sistema de foros dentro da legalidade republicana.",
+      "posicion_teorica": "Líder das mobilizacións labregas no Condado contra os foros e o caciquismo eclesial.",
+      "obra_clave": "Protestas agrarias do sur de Pontevedra",
+      "cita": "«A muller do campo non é esclava de ninguén; a terra dános de comer e a terra será nosa.»"
+    },
+    {
+      "id": "anton_arias_curto",
+      "nome": "Antón Arias Curto",
+      "anos": "1940–2020",
+      "taxonomia": "Xuristas democráticos / Nacionalismo progresista",
+      "coordenadas": { "x": -7.0, "y": 7.5 },
+      "marco_xuridico": "Subversión progresista do dereito burgués e normalización xudicial do galego.",
+      "posicion_teorica": "Xuíz represaliado polo franquismo por ditar sentenzas en galego e defender os dereitos sociais.",
+      "obra_clave": "Sentenzas en galego e ensaios xurídicos",
+      "cita": "«A xustiza non pode ser allea á lingua nin á realidade do pobo que xulga.»"
+    },
+    {
+      "id": "manuel_curros_enriquez",
+      "nome": "Manuel Curros Enríquez",
+      "anos": "1851–1908",
+      "taxonomia": "Republicanismo federal / Anticlericalismo radical",
+      "coordenadas": { "x": -7.0, "y": -0.5 },
+      "marco_xuridico": "Federalismo republicano español con ampla descentralización.",
+      "posicion_teorica": "Poeta civil do Rexurdimento, feroz crítico dos abusos eclesiásticos e da estrutura centralista da Restauración.",
+      "obra_clave": "Aires da miña terra (1880) / O divino sainete (1888)",
+      "cita": "«¡A terra é de quen a traballa e a conciencia de quen a pensa!»"
+    },
+    {
+      "id": "luis_seoane",
+      "nome": "Luís Seoane",
+      "anos": "1910–1979",
+      "taxonomia": "Galeguismo de esquerdas / Antifascismo cosmopolita",
+      "coordenadas": { "x": -7.0, "y": 7.5 },
+      "marco_xuridico": "Ruptura antifascista e autodeterminación vinculada á clase traballadora.",
+      "posicion_teorica": "Intelectual do exilio arxentino, fundador do Laboratorio de Formas e piar da modernidade galega.",
+      "obra_clave": "Fardel de eisilado (1952)",
+      "cita": "«A cultura galega só será libre cando o sexa o seu pobo traballador.»"
+    },
+    {
+      "id": "begonha_caamano",
+      "nome": "Begoña Caamaño",
+      "anos": "1964–2014",
+      "taxonomia": "Feminismo de esquerdas / Soberanismo cultural",
+      "coordenadas": { "x": -6.5, "y": 7.2 },
+      "marco_xuridico": "Ruptura democrática antipatriarcal e soberanía plena.",
+      "posicion_teorica": "Xornalista e escritora de profundas conviccións emancipadoras, críticas co poder establecido.",
+      "obra_clave": "Morgana en Esmelle (2012)",
+      "cita": "«A palabra, cando é libre, é a arma máis perigosa contra calquera poder inxusto.»"
+    },
+    {
+      "id": "basilio_alvarez",
+      "nome": "Basilio Álvarez",
+      "anos": "1877–1943",
+      "taxonomia": "Agrarismo populista / Republicanismo radical",
+      "coordenadas": { "x": -6.0, "y": -0.8 },
+      "marco_xuridico": "Reforma agraria dentro da legalidade estatal (Acción Gallega).",
+      "posicion_teorica": "O 'Abade de Beiro', líder de masas que mobilizou a centos de miles de labregos contra o sistema foral.",
+      "obra_clave": "Abriendo el surco (1913)",
+      "cita": "«¡Abaixo os foros! A terra debe ser para quen a traballa co seu suor.»"
+    },
+    {
+      "id": "rosalia_de_castro",
+      "nome": "Rosalía de Castro",
+      "anos": "1837–1885",
+      "taxonomia": "Humanismo social / Precursora do galeguismo ético",
+      "coordenadas": { "x": -5.5, "y": 6.0 },
+      "marco_xuridico": "Dignidade moral da nación e defensa xurídica dos parias e emigrantes.",
+      "posicion_teorica": "A gran matriz espiritual de Galicia. Sen militancia partidista, a súa voz denunciou a inxustiza social e o centralismo.",
+      "obra_clave": "Follas novas (1880) / Cantares gallegos (1863)",
+      "cita": "«Casteláns, cataláns, / vascos, galegos, / todos somos irmáns.»"
+    },
+    {
+      "id": "ana_ponton",
+      "nome": "Ana Pontón",
+      "anos": "1977–",
+      "taxonomia": "Nacionalismo democrático / Esquerda institucional",
+      "coordenadas": { "x": -5.0, "y": 6.0 },
+      "marco_xuridico": "Autogoberno progresista e ampliación de competencias estatutarias cara ao soberanismo.",
+      "posicion_teorica": "Líder do BNG. Representa o eixo socialdemócrata e nacionalista dentro das institucións autonómicas.",
+      "obra_clave": "Propostas de goberno galego e labor parlamentario",
+      "cita": "«Galicia ten todo o futuro por diante se confiamos nas nosas propias forzas.»"
+    },
+    {
+      "id": "maruja_mallo",
+      "nome": "Maruja Mallo",
+      "anos": "1902–1995",
+      "taxonomia": "Vangardismo libertario / Feminismo estético",
+      "coordenadas": { "x": -5.0, "y": 4.5 },
+      "marco_xuridico": "Ruptura total coas normas morais e burguesas do Estado.",
+      "posicion_teorica": "Pintora universal nada en Viveiro, clave das 'Sinsombrero' e da vangarda histórica madrileña e americana.",
+      "obra_clave": "Verbena (1927) / Canto de espigas (1939)",
+      "cita": "«Nacer muller e artista na miña época era declarar a guerra ao mundo establecido.»"
+    },
+    {
+      "id": "eduardo_blanco_amor",
+      "nome": "Eduardo Blanco Amor",
+      "anos": "1897–1979",
+      "taxonomia": "Galeguismo republicano / Realismo crítico",
+      "coordenadas": { "x": -5.0, "y": 5.0 },
+      "marco_xuridico": "Democracia republicana e liberdades civís.",
+      "posicion_teorica": "Narrador fundamental dende o exilio arxentino, retratou a dureza da sociedade galega sen idealizacións.",
+      "obra_clave": "A esmorga (1959) / Os biosbardos (1962)",
+      "cita": "«A lingua galega non é unha reliquia de museo, é o sangue vivo da nosa xente.»"
+    },
+    {
+      "id": "castelao",
+      "nome": "Alfonso Daniel Rodríguez Castelao",
+      "anos": "1886–1950",
+      "taxonomia": "Galeguismo democrático / Socialdemocracia confederal",
+      "coordenadas": { "x": -4.5, "y": 8.0 },
+      "marco_xuridico": "República Federal ou Confederal Ibérica e lexitimidade do Estatuto de 1936.",
+      "posicion_teorica": "Pai da patria galega moderna. Conectou o agrarismo, a xustiza social e o nacionalismo político.",
+      "obra_clave": "Sempre en Galiza (1944)",
+      "cita": "«A verdadeira tradición non é a que se atopa nos museos, senón a que vive no pobo.»"
+    },
+    {
+      "id": "alexandre_boveda",
+      "nome": "Alexandre Bóveda",
+      "anos": "1903–1936",
+      "taxonomia": "Galeguismo progresista / Soberanía fiscal",
+      "coordenadas": { "x": -4.8, "y": 7.2 },
+      "marco_xuridico": "Concierto económico e autonomía financeira para Galicia (Estatuto do 36).",
+      "posicion_teorica": "Economista e mártir do galeguismo. Defendeu que sen facenda propia a autonomía política era papel choiado.",
+      "obra_clave": "Proxecto de Estatuto de Galicia (relatorio económico)",
+      "cita": "«A autonomía non é un luxo sentimental, é unha necesidade económica.»"
+    },
+    {
+      "id": "eduardo_pondal",
+      "nome": "Eduardo Pondal",
+      "anos": "1835–1917",
+      "taxonomia": "Nacionalismo romántico / Celtismo épico",
+      "coordenadas": { "x": -4.0, "y": 6.5 },
+      "marco_xuridico": "Liberdade nacional e mitoloxía rexeneradora.",
+      "posicion_teorica": "O bardo dos Pinos. Creou o imaxinario simbólico e poético do futuro nacionalismo galego.",
+      "obra_clave": "Queixumes dos pinos (1886) / Os Pinos",
+      "cita": "«Mitoloxía, liberdade e patria son os tres mananciais da nosa alma.»"
+    },
+    {
+      "id": "maria_miramontes",
+      "nome": "María Miramontes",
+      "anos": "1895–1964",
+      "taxonomia": "Galeguismo cívico / Feminismo republicano",
+      "coordenadas": { "x": -3.5, "y": 6.2 },
+      "marco_xuridico": "Igualdade xurídica da muller e institucións culturais propias.",
+      "posicion_teorica": "Cofundadora da Editorial Nós e activa militante das Irmandades da Fala e do Partido Galeguista.",
+      "obra_clave": "Deseños e labor editorial en Nós",
+      "cita": "«Sen a muller galega consciente dos seus dereitos non haberá rexurdimento completo.»"
+    },
+    {
+      "id": "ramon_cabanillas",
+      "nome": "Ramón Cabanillas",
+      "anos": "1876–1959",
+      "taxonomia": "Galeguismo popular / Agrarismo poético",
+      "coordenadas": { "x": -3.5, "y": 5.8 },
+      "marco_xuridico": "Soberanía cultural e dignificación da labregas e labregos.",
+      "posicion_teorica": "O poeta da raza. Conectou o Rexurdimento co movemento das Irmandades e o agrarismo.",
+      "obra_clave": "Da terra asoballada (1917) / Vento mareiro",
+      "cita": "«¡Irmáns! ¡En pé! ¡A terra chama por nós!»"
+    },
+    {
+      "id": "manuel_murgia",
+      "nome": "Manuel Murguía",
+      "anos": "1833–1923",
+      "taxonomia": "Rexionalismo histórico / Proto-nacionalismo",
+      "coordenadas": { "x": -3.0, "y": 5.0 },
+      "marco_xuridico": "Reconocimiento da individualidade histórica e diferenciada de Galicia.",
+      "posicion_teorica": "Historiador e patriarca do Rexurdimento. Fundador da Asociación Regionalista Gallega.",
+      "obra_clave": "Los gallegos (1888) / Historia de Galicia",
+      "cita": "«Galicia ten dereito á vida propia porque ten historia, lingua e espírito propio.»"
+    },
+    {
+      "id": "valle_inclan",
+      "nome": "Ramón María del Valle-Inclán",
+      "anos": "1866–1936",
+      "taxonomia": "Estetismo crítico / Republicanismo radical",
+      "coordenadas": { "x": -3.0, "y": -0.5 },
+      "marco_xuridico": "Desprezo ás institucións corruptas da Restauración e da monarquía.",
+      "posicion_teorica": "Evoluíu dun carlismo estético e aristocrático cara ao republicanismo antifascista máis mordaz.",
+      "obra_clave": "Luces de Bohemia (1920) / Divinas palabras",
+      "cita": "«España é unha deformación grotesca da civilización europea.»"
+    },
+    {
+      "id": "anton_villar_ponte",
+      "nome": "Antón Villar Ponte",
+      "anos": "1881–1936",
+      "taxonomia": "Nacionalismo republicano / Federalismo ibérico",
+      "coordenadas": { "x": -2.5, "y": 5.2 },
+      "marco_xuridico": "Federalismo ibérico e autonomía republicana.",
+      "posicion_teorica": "Alma máter das Irmandades da Fala en 1916. Abriu o nacionalismo á alianza cos republicanos de esquerda.",
+      "obra_clave": "Nacionalismo gallego (1916)",
+      "cita": "«Cumpre facer de Galicia un pobo libre dentro dunha Iberia federada.»"
+    },
+    {
+      "id": "ramon_piñeiro",
+      "nome": "Ramón Piñeiro",
+      "anos": "1915–1990",
+      "taxonomia": "Culturalismo estratéxico / Galeguismo de transición",
+      "coordenadas": { "x": 0.0, "y": 1.5 },
+      "marco_xuridico": "Autonomismo constitucional moderado e integración no sistema parlamentario da Transición.",
+      "posicion_teorica": "Líder da resistencia cultural no interior (Editorial Galaxia). Apostou por facer 'país' antes ca política directa.",
+      "obra_clave": "Filosofía da saudade (1984)",
+      "cita": "«Antes de facer política galega hai que volver facer país na conciencia da xente.»"
+    },
+    {
+      "id": "sofia_casanova",
+      "nome": "Sofía Casanova",
+      "anos": "1861–1958",
+      "taxonomia": "Humanismo liberal / Pacifismo internacionalista",
+      "coordenadas": { "x": 2.0, "y": 1.0 },
+      "marco_xuridico": "Humanitarismo e republicanismo moderado dentro da orde internacional.",
+      "posicion_teorica": "Primeira muller correspondente permanente en Europa. Testemuña das grandes crises do século XX con forte apego a Galicia.",
+      "obra_clave": "La revolución rusa (1920)",
+      "cita": "«A guerra é a bancarrota da razón humana; só a cultura e a xustiza salvan aos pobos.»"
+    },
+    {
+      "id": "otero_pedrayo",
+      "nome": "Ramón Otero Pedrayo",
+      "anos": "1888–1976",
+      "taxonomia": "Liberal-conservador / Fidalguía tradicionalista",
+      "coordenadas": { "x": 3.0, "y": 5.5 },
+      "marco_xuridico": "Dereito consuetudinario galego e defensa dos dereitos históricos e estatutarios.",
+      "posicion_teorica": "Patriarca das letras. Católico, liberal no cultural e defensor da propiedade rural tradicional fronte ao capitalismo industrial.",
+      "obra_clave": "Ensaio histórico sobre a cultura galega (1933)",
+      "cita": "«O noso dereito non nace nos códigos de Madrid, senón na terra e na historia.»"
+    },
+    {
+      "id": "alvaro_cunqueiro",
+      "nome": "Álvaro Cunqueiro",
+      "anos": "1911–1981",
+      "taxonomia": "Culturalismo estético / Conservadorismo mítico",
+      "coordenadas": { "x": 3.5, "y": -1.0 },
+      "marco_xuridico": "Acomodación institucional e cultural dentro do franquismo e do posterior marco autonómico.",
+      "posicion_teorica": "Traxectoria poliédrica (galeguista na república, falanxista na guerra, despois centrado na alta literatura fantástica).",
+      "obra_clave": "Merlín e familia (1955) / As crónicas do sochantre",
+      "cita": "«Mil primaveras máis para a lingua galega.»"
+    },
+    {
+      "id": "maria_pita",
+      "nome": "María Mayor Fernández de Cámara y Pita (María Pita)",
+      "anos": "1565–1643",
+      "taxonomia": "Lealdade á Coroa / Defensora municipal",
+      "coordenadas": { "x": 4.0, "y": -4.5 },
+      "marco_xuridico": "Fidelidade á monarquía hispánica e defensa dos privilexios e foros municipais da Coruña.",
+      "posicion_teorica": "Heroína na defensa da cidade fronte á armada inglesa. Representa o heroísmo local ao servizo da Coroa.",
+      "obra_clave": "Defensa da Coruña (1589)",
+      "cita": "«Quen teña honra, que me siga!»"
+    },
+    {
+      "id": "portela_valladares",
+      "nome": "Manuel Portela Valladares",
+      "anos": "1867–1952",
+      "taxonomia": "Centrismo liberal / Reformismo dinástico",
+      "coordenadas": { "x": 4.0, "y": -2.0 },
+      "marco_xuridico": "Rexionalismo constitucional e descentralización administrativa estritamente estatal.",
+      "posicion_teorica": "Fundador de 'El Pueblo Gallego' e Presidente do Goberno en 1935. Liberal pragmático partidario da orde republicana moderada.",
+      "obra_clave": "Editoriais en El Pueblo Gallego",
+      "cita": "«Galicia ten dereito a xestionar os seus propios intereses sen romper a unidade da República.»"
+    },
+    {
+      "id": "vicente_risco",
+      "nome": "Vicente Risco",
+      "anos": "1884–1963",
+      "taxonomia": "Tradicionalismo católico / Nacionalismo antimoderno",
+      "coordenadas": { "x": 5.0, "y": 6.8 },
+      "marco_xuridico": "Nacionalismo cultural organicista, espiritualista e corporativismo social.",
+      "posicion_teorica": "Teórico do nacionalismo galego inicial dende unha perspectiva dereitista, antiliberal, antimoderna e profundamente católica.",
+      "obra_clave": "Teoría do nacionalismo galego (1920)",
+      "cita": "«Ti dis: Galicia é ben pequena. Eu dígoche: Galicia é un mundo.»"
+    },
+    {
+      "id": "filgueira_valverde",
+      "nome": "Xosé Filgueira Valverde",
+      "anos": "1906–1996",
+      "taxonomia": "Rexionalismo conservador / Franquismo cultural",
+      "coordenadas": { "x": 5.0, "y": -3.5 },
+      "marco_xuridico": "Colaboración institucional co Estado autoritario para preservar o patrimonio local.",
+      "posicion_teorica": "Intelectual pontevedrés que aceptou cargos clave no franquismo mentres protexía o Seminario de Estudos Galegos e o Museo de Pontevedra.",
+      "obra_clave": "Adral (1970)",
+      "cita": "«A cultura galega pode e debe salvarse desde dentro das institucións vixentes.»"
+    },
+    {
+      "id": "emilia_pardo_bazan",
+      "nome": "Emilia Pardo Bazán",
+      "anos": "1851–1921",
+      "taxonomia": "Liberalismo conservador / Feminismo aristocrático",
+      "coordenadas": { "x": 5.5, "y": -1.5 },
+      "marco_xuridico": "Monarquía constitucional liberal, dereito civil galego e acceso igualitario da muller á educación.",
+      "posicion_teorica": "Aristócrata, gran escritora realista e pioneira do feminismo intelectual en España, mantendo posturas políticas monárquicas e conservadoras.",
+      "obra_clave": "Los pazos de Ulloa (1886) / La mujer española (1916)",
+      "cita": "«Se á muller se lle nega a educación, a culpa non é da súa natureza, senón da inxustiza das leis.»"
+    },
+    {
+      "id": "alberto_nunez_feijoo",
+      "nome": "Alberto Núñez Feijóo",
+      "anos": "1961–",
+      "taxonomia": "Democracia-cristiá / Conservadorismo autonómico",
+      "coordenadas": { "x": 5.5, "y": -4.0 },
+      "marco_xuridico": "Autonomismo constitucional moderado e 'galeguismo cordial' dentro do marco de 1981.",
+      "posicion_teorica": "Presidente da Xunta (2009–2022). Xestión económica liberal-conservadora e contención do nacionalismo periférico.",
+      "obra_clave": "Xestión económica e goberno autonómico",
+      "cita": "«Somos galegos porque somos españois, e contribuímos a España desde Galicia.»"
+    },
+    {
+      "id": "alfonso_rueda",
+      "nome": "Alfonso Rueda",
+      "anos": "1968–",
+      "taxonomia": "Centro-dereita xestor / Autonomismo PPdeG",
+      "coordenadas": { "x": 5.5, "y": -4.0 },
+      "marco_xuridico": "Estabilidade estatutaria e lealdade institucional ao Estado español.",
+      "posicion_teorica": "Presidente da Xunta dende 2022. Perfil continuista, institucional e de administración ordinaria do marco vixente.",
+      "obra_clave": "Presidencia da Xunta de Galicia",
+      "cita": "«Galicia funciona con estabilidade, sentidiño e sen aventuras rupturistas.»"
+    },
+    {
+      "id": "manuel_fraga",
+      "nome": "Manuel Fraga Iribarne",
+      "anos": "1922–2012",
+      "taxonomia": "Conservadorismo autoritario / Franquismo reformista / Rexionalismo de Estado",
+      "coordenadas": { "x": 6.5, "y": -6.0 },
+      "marco_xuridico": "Constitución de 1978, indisoluble unidade de España e administración rexionalizada única.",
+      "posicion_teorica": "Ministro franquista, pai da Constitución e presidente da Xunta durante 15 anos. Usou o folclore e o galeguismo inofensivo para bloquear o nacionalismo.",
+      "obra_clave": "El desarrollo regional y España (1973)",
+      "cita": "«Galicia é unha realidade cultural e histórica indiscutible dentro da gran nación española.»"
+    },
+    {
+      "id": "calvo_sotelo",
+      "nome": "José Calvo Sotelo",
+      "anos": "1893–1936",
+      "taxonomia": "Nacionalcatolicismo / Autoritarismo centralista",
+      "coordenadas": { "x": 7.5, "y": -9.5 },
+      "marco_xuridico": "Estado corporativo unitario, centralismo radical e prohibición de calquera estatuto de autonomía.",
+      "posicion_teorica": "Ministro con Primo de Rivera e líder da dereita antirrepublicana extrema nos anos 30. Opositor frontal e virulento ao Estatuto galego.",
+      "obra_clave": "El Estado que queremos (1935)",
+      "cita": "«Prefiro unha España vermella antes que unha España rota.»"
+    },
+    {
+      "id": "francisco_franco",
+      "nome": "Francisco Franco",
+      "anos": "1892–1975",
+      "taxonomia": "Totalitarismo fascista / Nacional-catolicismo autárquico",
+      "coordenadas": { "x": 5.0, "y": -10.0 },
+      "marco_xuridico": "Estado totalitario centralista, abolición por decret-lei de tódolos estatutos e prohibición pública do galego.",
+      "posicion_teorica": "Ditador nado en Ferrol que destruíu o marco democrático republicano e impuxo un réxime militar hipercentralista e corporativo.",
+      "obra_clave": "Leyes Fundamentales del Reino / Discursos oficiais",
+      "cita": "«Todo queda atado y bien atado.»"
+    },
+        {
+      "id": "pablo_iglesias_posse",
+      "nome": "Pablo Iglesias Posse",
+      "anos": "1850–1925",
+      "taxonomia": "Socialismo obreiro / Sindicalismo estatal",
+      "coordenadas": { "x": -8.0, "y": -4.0 },
+      "marco_xuridico": "Estado liberal español reformado desde dentro, con representación obreira no Parlamento.",
+      "posicion_teorica": "Nado en Ferrol. Fundador do PSOE e da UGT e primeiro deputado socialista. Organizou a clase obreira a escala estatal.",
+      "obra_clave": "Fundación do PSOE (1879) e da UGT (1888)",
+      "cita": ""
+    },
+    {
+      "id": "santiago_alvarez_gomez",
+      "nome": "Santiago Álvarez Gómez",
+      "anos": "1913–2002",
+      "taxonomia": "Comunismo ortodoxo / Antifranquismo militante",
+      "coordenadas": { "x": -9.0, "y": -5.0 },
+      "marco_xuridico": "Ruptura democrática co franquismo e Estado socialista de ámbito español.",
+      "posicion_teorica": "Dirixente histórico do PCE e do comunismo galego, combatente na Guerra Civil e no exilio e na clandestinidade antifranquista.",
+      "obra_clave": "Memorias",
+      "cita": ""
+    },
+    {
+      "id": "yolanda_diaz",
+      "nome": "Yolanda Díaz",
+      "anos": "1971–",
+      "taxonomia": "Esquerda estatal / Laborismo",
+      "coordenadas": { "x": -5.5, "y": -2.5 },
+      "marco_xuridico": "Marco constitucional de 1978 con ampliación de dereitos laborais e sociais.",
+      "posicion_teorica": "Nada en Fene. Avogada laboralista, ministra de Traballo e líder de Sumar. Prioriza o diálogo social e a lexislación laboral estatal.",
+      "obra_clave": "Reforma laboral de 2021 e redución da xornada",
+      "cita": ""
+    },
+    {
+      "id": "francisco_vazquez",
+      "nome": "Francisco Vázquez",
+      "anos": "1946–",
+      "taxonomia": "Socialdemocracia / Constitucionalismo español",
+      "coordenadas": { "x": -2.5, "y": -4.5 },
+      "marco_xuridico": "Constitución de 1978 e unidade do Estado, con rexeitamento do nacionalismo periférico.",
+      "posicion_teorica": "Alcalde da Coruña entre 1983 e 2006 e embaixador ante a Santa Sé. Voz crítica dentro do PSOE cos estatutos soberanistas.",
+      "obra_clave": "Alcaldía da Coruña (1983–2006)",
+      "cita": ""
+    },
+    {
+      "id": "concepcion_arenal",
+      "nome": "Concepción Arenal",
+      "anos": "1820–1893",
+      "taxonomia": "Liberalismo social / Reformismo humanitario",
+      "coordenadas": { "x": -2.0, "y": -3.0 },
+      "marco_xuridico": "Reforma penal e beneficente dentro do Estado liberal español.",
+      "posicion_teorica": "Nada en Ferrol. Pioneira do pensamento penitenciario e da reforma social. Defendeu a educación da muller e a dignidade dos presos e dos pobres.",
+      "obra_clave": "La beneficencia, la filantropía y la caridad (1861) / Estudios penitenciarios",
+      "cita": "«Odia o delito e compadece ao delincuente.»"
+    },
+    {
+      "id": "santiago_casares_quiroga",
+      "nome": "Santiago Casares Quiroga",
+      "anos": "1884–1950",
+      "taxonomia": "Republicanismo de esquerda / Autonomismo moderado",
+      "coordenadas": { "x": -3.0, "y": -1.0 },
+      "marco_xuridico": "República democrática con autonomías dentro dun Estado unitario.",
+      "posicion_teorica": "Nado na Coruña. Fundou a ORGA, foi ministro e presidiu o Goberno da República en 1936. Defendeu o Estatuto galego sen romper o marco estatal.",
+      "obra_clave": "Fundación da ORGA (1929)",
+      "cita": ""
+    },
+    {
+      "id": "emilio_perez_tourino",
+      "nome": "Emilio Pérez Touriño",
+      "anos": "1948–",
+      "taxonomia": "Socialdemocracia / Autonomismo federal",
+      "coordenadas": { "x": -3.5, "y": -1.0 },
+      "marco_xuridico": "Reforma estatutaria dentro do marco constitucional.",
+      "posicion_teorica": "Presidente da Xunta entre 2005 e 2009 á fronte dun goberno bipartito PSdeG-BNG.",
+      "obra_clave": "Goberno bipartito da Xunta (2005–2009)",
+      "cita": ""
+    }
+  ]
+}

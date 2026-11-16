@@ -1,0 +1,67 @@
+---
+import Avatar from "./Avatar.astro";
+
+interface Props {
+  p: {
+    id: string;
+    nome: string;
+    anos: string;
+    taxonomia: string;
+    posicion_teorica: string;
+    coordenadas: { x: number; y: number };
+    imaxe?: string | null;
+  };
+}
+const { p } = Astro.props;
+
+const nome = p.nome.replace(/\s*\(.*\)/, "");
+const arquetipo = p.taxonomia.split(" / ")[0];
+const lado = (v: number) =>
+  v < 0 ? `right:50%;width:${Math.abs(v) * 5}%` : `left:50%;width:${v * 5}%`;
+const eixos = [
+  { l: "Colectivismo", r: "Liberalismo", v: p.coordenadas.x },
+  { l: "Centralismo", r: "Soberanismo", v: p.coordenadas.y },
+];
+---
+
+<a
+  href={`/personaxe/${p.id}`}
+  class="group relative flex flex-col overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-br from-[#8d2136] to-[#4f0f1c] text-crema shadow-lg transition duration-300 hover:-translate-y-1.5 hover:shadow-2xl"
+>
+  <div class="relative aspect-[4/3] overflow-hidden bg-black/20">
+    <Avatar
+      nome={p.nome}
+      imaxe={p.imaxe}
+      redondo={false}
+      class="h-full w-full text-6xl transition duration-500 group-hover:scale-105"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-[#4f0f1c] via-[#4f0f1c]/10 to-transparent"></div>
+    <span class="absolute left-4 top-4 rounded-full bg-black/30 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] backdrop-blur">
+      {p.anos}
+    </span>
+  </div>
+
+  <div class="flex flex-1 flex-col px-5 pb-5 pt-2">
+    <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-crema/60">Arquetipo</p>
+    <h3 class="mt-1 text-2xl font-extrabold leading-tight">{arquetipo}</h3>
+    <p class="mt-1 text-sm font-semibold text-crema/80">{nome}</p>
+    <p class="mt-3 line-clamp-3 text-xs leading-relaxed text-crema/60">{p.posicion_teorica}</p>
+
+    <div class="mt-auto space-y-3 pt-5">
+      {
+        eixos.map((e) => (
+          <div>
+            <div class="mb-1 flex justify-between text-[10px] font-semibold uppercase tracking-wide text-crema/50">
+              <span>{e.l}</span>
+              <span>{e.r}</span>
+            </div>
+            <div class="relative h-1.5 rounded-full bg-white/15">
+              <div class="absolute top-0 h-full rounded-full bg-crema" style={lado(e.v)} />
+              <div class="absolute left-1/2 top-[-2px] h-[10px] w-px bg-white/40" />
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</a>

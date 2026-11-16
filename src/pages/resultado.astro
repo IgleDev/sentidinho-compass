@@ -1,0 +1,554 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Compass from "../components/Compass.astro";
+import { getPersonaxes } from "../lib/personaxes";
+import SEO from "../components/SEO.astro";
+
+const personaxes = await getPersonaxes();
+const datos = personaxes.map(({ id, nome, anos, taxonomia, coordenadas, imaxe }) => ({
+  id, nome, anos, taxonomia, coordenadas, imaxe,
+}));
+---
+
+<Layout title="O teu resultado · Compás Político Galego">
+  <SEO slot="head" title="O teu resultado · Compás Político Galego" description="O teu resultado no compás político galego." noindex />
+  <section id="contido" class="mx-auto hidden max-w-6xl px-4 py-12">
+    <div class="text-center">
+      <p class="text-sm font-semibold uppercase tracking-widest text-realce">O teu resultado</p>
+      <h1 id="cuadrante" class="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl"></h1>
+      <p id="coords" class="mt-2 text-sec"></p>
+    </div>
+
+    <div class="mx-auto mt-10 grid max-w-5xl gap-8 lg:grid-cols-2">
+      <Compass personaxes={personaxes} />
+      <div>
+        <h2 class="mb-4 text-sm font-semibold uppercase tracking-wide text-sec">Figuras máis afíns</h2>
+        <ol id="afins" class="space-y-3"></ol>
+      </div>
+    </div>
+
+    <div class="mt-16 grid items-center gap-10 lg:grid-cols-2">
+      <div class="mx-auto w-full max-w-sm">
+        <canvas
+          id="tarxeta"
+          width="1080"
+          height="1560"
+          class="w-full rounded-3xl shadow-xl"
+        ></canvas>
+      </div>
+      <div class="text-center lg:text-left">
+        <h2 class="text-3xl font-bold">A túa tarxeta</h2>
+        <p class="mt-2 text-sec">Descárgaa e compárteo nas túas redes.</p>
+        <div class="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
+          <button id="descargar" class="rounded-xl bg-realce px-5 py-3 text-sm font-semibold text-white hover:opacity-90">
+            Descargar imaxe
+          </button>
+          <button id="compartir" class="hidden rounded-xl border border-lina bg-papel px-5 py-3 text-sm font-semibold hover:bg-lina/50">
+            Compartir
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16">
+      <h2 class="text-center text-3xl font-bold">Os teus 12 eixos</h2>
+      <p class="mb-8 mt-2 text-center text-sm text-sec">
+        Cada barra parte do centro: canto máis longa, máis marcada é a túa posición.
+      </p>
+      <div id="eixos" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></div>
+    </div>
+
+    <div class="mt-12 flex flex-wrap justify-center gap-3">
+      <a href="/test" class="rounded-xl bg-realce px-5 py-3 text-sm font-semibold text-white hover:opacity-90">
+        Repetir o test
+      </a>
+      <button id="copiar" class="rounded-xl border border-lina bg-papel px-5 py-3 text-sm font-semibold hover:bg-lina/50">
+        Copiar resultado
+      </button>
+      <a href="/personaxes" class="rounded-xl border border-lina bg-papel px-5 py-3 text-sm font-semibold hover:bg-lina/50">
+        Ver todas as personaxes
+      </a>
+    </div>
+  </section>
+
+  <script type="application/json" id="datos-personaxes" set:html={JSON.stringify(datos)} />
+</Layout>
+
+<script>
+  import test from "../data/test.json";
+  import { icono, ICO } from "../lib/icons";
+  import { calcular, ordenarPorProximidade, cuadrante, type Pregunta } from "../lib/scoring";
+  import { calcularEixos } from "../lib/eixos";
+
+  type Fig = {
+    id: string;
+    nome: string;
+    anos: string;
+    taxonomia: string;
+    coordenadas: { x: number; y: number };
+    imaxe: string | null;
+  };
+
+  const $ = (id: string) => document.getElementById(id)!;
+  const fmt = (n: number) => (n > 0 ? "+" : "") + n.toFixed(1);
+  const iniciais = (n: string) =>
+    n.replace(/\(.*\)/, "").split(" ").filter(Boolean).slice(0, 2).map((s) => s[0]).join("").toUpperCase();
+  const limpo = (n: string) => n.replace(/\s*\(.*\)/, "");
+
+  function avatar(p: Fig) {
+    const img = p.imaxe
+      ? `<img src="${p.imaxe}" alt="" loading="lazy" referrerpolicy="no-referrer" class="absolute inset-0 h-full w-full object-cover object-top" onerror="this.remove()">`
+      : "";
+    return `<span class="relative inline-flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full bg-galego-100 text-sm font-bold text-galego-700">${iniciais(p.nome)}${img}</span>`;
+  }
+
+  /* ───────────── TARXETA (canvas) ───────────── */
+
+  const W = 1080;
+  const H = 1560;
+  const CREMA = "#f6f4f0";
+  const SOFT = "rgba(246,244,240,0.72)";
+  const PANEL = "rgba(255,255,255,0.08)";
+  const BORDE = "rgba(255,255,255,0.14)";
+  const F = (peso: number, tam: number) => `${peso} ${tam}px "Museo Moderno", system-ui, sans-serif`;
+
+  function carga(src: string | null): Promise<HTMLImageElement | null> {
+    return new Promise((res) => {
+      if (!src) return res(null);
+      const im = new Image();
+      im.crossOrigin = "anonymous";
+      im.onload = () => res(im);
+      im.onerror = () => res(null);
+      im.src = src;
+    });
+  }
+
+  function cover(ctx: CanvasRenderingContext2D, im: HTMLImageElement, x: number, y: number, w: number, h: number) {
+    const r = Math.max(w / im.width, h / im.height);
+    const sw = w / r;
+    const sh = h / r;
+    ctx.drawImage(im, (im.width - sw) / 2, 0, sw, sh, x, y, w, h);
+  }
+
+  function ajustar(ctx: CanvasRenderingContext2D, txt: string, max: number, tam: number, peso: number, min = 16) {
+    let s = tam;
+    ctx.font = F(peso, s);
+    while (s > min && ctx.measureText(txt).width > max) {
+      s -= 2;
+      ctx.font = F(peso, s);
+    }
+    return s;
+  }
+
+  function lineas(ctx: CanvasRenderingContext2D, txt: string, max: number, maxLin: number) {
+    const palabras = txt.split(" ");
+    const out: string[] = [];
+    let atual = "";
+    for (const p of palabras) {
+      const proba = atual ? `${atual} ${p}` : p;
+      if (ctx.measureText(proba).width > max && atual) {
+        out.push(atual);
+        atual = p;
+      } else atual = proba;
+    }
+    if (atual) out.push(atual);
+    if (out.length > maxLin) {
+      out.length = maxLin;
+      out[maxLin - 1] = out[maxLin - 1].replace(/\s*\S*$/, "") + "…";
+    }
+    return out;
+  }
+
+  function spacing(ctx: CanvasRenderingContext2D, v: string) {
+    (ctx as unknown as { letterSpacing: string }).letterSpacing = v;
+  }
+
+  function panel(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number) {
+    ctx.beginPath();
+    ctx.roundRect(x, y, w, h, 32);
+    ctx.fillStyle = PANEL;
+    ctx.fill();
+    ctx.strokeStyle = BORDE;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+
+  function circuloFoto(
+    ctx: CanvasRenderingContext2D,
+    im: HTMLImageElement | null,
+    nome: string,
+    cx: number,
+    cy: number,
+    r: number
+  ) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.clip();
+    if (im) cover(ctx, im, cx - r, cy - r, r * 2, r * 2);
+    else {
+      ctx.fillStyle = "rgba(255,255,255,0.2)";
+      ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
+      ctx.fillStyle = CREMA;
+      ctx.font = F(700, r * 0.8);
+      ctx.textAlign = "center";
+      ctx.fillText(iniciais(nome), cx, cy + r * 0.28);
+    }
+    ctx.restore();
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.strokeStyle = BORDE;
+    ctx.lineWidth = 3;
+    ctx.stroke();
+  }
+
+  async function debuxarTarxeta(
+    canvas: HTMLCanvasElement,
+    pos: { x: number; y: number },
+    ranking: { personaxe: Fig; afinidade: number }[],
+    figuras: Fig[],
+    respostas: Record<number, number>
+  ) {
+    try {
+      await Promise.all([
+        document.fonts.load(`400 40px "Museo Moderno"`),
+        document.fonts.load(`700 40px "Museo Moderno"`),
+      ]);
+    } catch {}
+
+    const ctx = canvas.getContext("2d")!;
+    const top4 = ranking.slice(0, 4);
+    const fotos = await Promise.all(top4.map((r) => carga(r.personaxe.imaxe)));
+    const top = top4[0].personaxe;
+
+    // fondo
+    const g = ctx.createLinearGradient(0, 0, W, H);
+    g.addColorStop(0, "#8d2136");
+    g.addColorStop(1, "#4f0f1c");
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, H);
+
+    // cabeceira
+    ctx.textAlign = "left";
+    ctx.fillStyle = CREMA;
+    ctx.font = F(800, 52);
+    ctx.fillText("Compás Galego", 60, 110);
+    ctx.textAlign = "right";
+    ctx.fillStyle = SOFT;
+    ctx.font = F(600, 24);
+    spacing(ctx, "4px");
+    ctx.fillText("O MEU RESULTADO", W - 60, 108);
+    spacing(ctx, "0px");
+    ctx.fillStyle = "rgba(255,255,255,0.18)";
+    ctx.fillRect(60, 140, W - 120, 2);
+
+    // título
+    ctx.textAlign = "left";
+    ctx.fillStyle = SOFT;
+    ctx.font = F(600, 24);
+    spacing(ctx, "4px");
+    ctx.fillText("O MEU PERFIL", 60, 205);
+    spacing(ctx, "0px");
+    const titulo = top.taxonomia.split(" / ")[0];
+    ctx.fillStyle = CREMA;
+    ajustar(ctx, titulo, W - 120, 104, 800, 44);
+    ctx.fillText(titulo, 60, 300);
+
+    // tarxeta da figura máis afín
+    const cx0 = 60, cy0 = 360, cw = 450, ch = 650;
+    panel(ctx, cx0, cy0, cw, ch);
+    ctx.save();
+    ctx.beginPath();
+    ctx.roundRect(cx0, cy0, cw, ch, 32);
+    ctx.clip();
+    if (fotos[0]) {
+      cover(ctx, fotos[0], cx0, cy0, cw, 420);
+    } else {
+      ctx.fillStyle = "rgba(255,255,255,0.12)";
+      ctx.fillRect(cx0, cy0, cw, 420);
+      ctx.fillStyle = "rgba(246,244,240,0.5)";
+      ctx.font = F(800, 180);
+      ctx.textAlign = "center";
+      ctx.fillText(iniciais(top.nome), cx0 + cw / 2, cy0 + 270);
+    }
+    const fade = ctx.createLinearGradient(0, cy0 + 220, 0, cy0 + 430);
+    fade.addColorStop(0, "rgba(79,15,28,0)");
+    fade.addColorStop(1, "rgba(79,15,28,0.96)");
+    ctx.fillStyle = fade;
+    ctx.fillRect(cx0, cy0 + 220, cw, 215);
+    ctx.restore();
+
+    ctx.textAlign = "left";
+    ctx.fillStyle = CREMA;
+    ctx.font = F(800, 120);
+    ctx.fillText(`${top4[0].afinidade}%`, cx0 + 32, cy0 + 462);
+    ctx.fillStyle = SOFT;
+    ctx.font = F(600, 24);
+    spacing(ctx, "3px");
+    ctx.fillText("MÁIS AFÍN", cx0 + 34, cy0 + 500);
+    spacing(ctx, "0px");
+    ctx.fillStyle = CREMA;
+    ctx.font = F(800, 40);
+    lineas(ctx, limpo(top.nome), cw - 64, 2).forEach((l, i) => ctx.fillText(l, cx0 + 32, cy0 + 552 + i * 46));
+
+    // 12 eixos
+    const rx = 530, ry = 360, rw = 490, rh = 650;
+    panel(ctx, rx, ry, rw, rh);
+    ctx.fillStyle = SOFT;
+    ctx.font = F(700, 24);
+    spacing(ctx, "3px");
+    ctx.fillText("OS TEUS 12 EIXOS", rx + 30, ry + 56);
+    spacing(ctx, "0px");
+    calcularEixos(respostas).forEach(({ eixo: e, valor }, i) => {
+      const y = ry + 112 + i * 44;
+      const neg = valor !== null && valor < 0;
+      const pct = valor === null ? 0 : Math.round(Math.abs(valor) * 100);
+      const nome = valor === null ? "—" : pct < 10 ? "Equilibrado" : neg ? e.esq : e.dir;
+      ctx.fillStyle = CREMA;
+      ctx.beginPath();
+      ctx.arc(rx + 38, y - 8, 7, 0, Math.PI * 2);
+      ctx.fill();
+      ajustar(ctx, nome, 215, 25, 700, 17);
+      ctx.textAlign = "left";
+      ctx.fillText(nome, rx + 60, y);
+      // barra
+      ctx.fillStyle = "rgba(255,255,255,0.18)";
+      ctx.beginPath();
+      ctx.roundRect(rx + 290, y - 16, 110, 10, 5);
+      ctx.fill();
+      ctx.fillStyle = CREMA;
+      ctx.beginPath();
+      ctx.roundRect(rx + 290, y - 16, Math.max(6, (110 * pct) / 100), 10, 5);
+      ctx.fill();
+      ctx.font = F(700, 24);
+      ctx.textAlign = "right";
+      ctx.fillStyle = CREMA;
+      ctx.fillText(`${pct}%`, rx + rw - 28, y);
+      ctx.textAlign = "left";
+    });
+
+    // outras personalidades
+    const by = 1040, bh = 360;
+    panel(ctx, 60, by, 450, bh);
+    ctx.fillStyle = SOFT;
+    ctx.font = F(700, 22);
+    spacing(ctx, "3px");
+    ctx.textAlign = "left";
+    ctx.fillText("OUTRAS PERSONALIDADES", 90, by + 52);
+    spacing(ctx, "0px");
+    top4.slice(1).forEach((r, i) => {
+      const y = by + 80 + i * 90 + 38;
+      circuloFoto(ctx, fotos[i + 1], r.personaxe.nome, 90 + 34, y, 34);
+      ctx.fillStyle = CREMA;
+      const nome = limpo(r.personaxe.nome);
+      ajustar(ctx, nome, 230, 26, 700, 16);
+      ctx.textAlign = "left";
+      ctx.fillText(nome, 90 + 34 + 24 + 34 - 10, y + 9);
+      ctx.font = F(800, 28);
+      ctx.textAlign = "right";
+      ctx.fillText(`${r.afinidade}%`, 60 + 450 - 28, y + 10);
+    });
+
+    // posición (mini-compás)
+    panel(ctx, 530, by, 490, bh);
+    ctx.fillStyle = SOFT;
+    ctx.font = F(700, 22);
+    spacing(ctx, "3px");
+    ctx.textAlign = "left";
+    ctx.fillText("A TÚA POSICIÓN", 560, by + 52);
+    spacing(ctx, "0px");
+    const S = 270;
+    const mx = 530 + (490 - S) / 2;
+    const my = by + 72;
+    ctx.fillStyle = "rgba(255,255,255,0.08)";
+    ctx.beginPath();
+    ctx.roundRect(mx, my, S, S, 16);
+    ctx.fill();
+    ctx.strokeStyle = "rgba(255,255,255,0.25)";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(mx + S / 2, my);
+    ctx.lineTo(mx + S / 2, my + S);
+    ctx.moveTo(mx, my + S / 2);
+    ctx.lineTo(mx + S, my + S / 2);
+    ctx.stroke();
+    const PX = (x: number) => mx + ((x + 10) / 20) * S;
+    const PY = (y: number) => my + ((y + 10) / 20) * S; // soberanismo abaixo
+    ctx.fillStyle = "rgba(246,244,240,0.45)";
+    figuras.forEach((f) => {
+      ctx.beginPath();
+      ctx.arc(PX(f.coordenadas.x), PY(f.coordenadas.y), 4, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    ctx.fillStyle = "rgba(246,244,240,0.7)";
+    ctx.font = F(600, 15);
+    ctx.textAlign = "center";
+    ctx.fillText("Centralismo", mx + S / 2, my + 20);
+    ctx.fillText("Soberanismo", mx + S / 2, my + S - 8);
+    ctx.textAlign = "left";
+    ctx.fillText("Colectivismo", mx + 10, my + S / 2 - 8);
+    ctx.textAlign = "right";
+    ctx.fillText("Liberalismo", mx + S - 10, my + S / 2 - 8);
+    // figura máis afín + usuario
+    ctx.fillStyle = "#ffd0d8";
+    ctx.beginPath();
+    ctx.arc(PX(top.coordenadas.x), PY(top.coordenadas.y), 8, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "#c53f56";
+    ctx.strokeStyle = CREMA;
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.arc(PX(pos.x), PY(pos.y), 11, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    // pé
+    ctx.textAlign = "left";
+    ctx.fillStyle = SOFT;
+    ctx.font = F(600, 22);
+    spacing(ctx, "4px");
+    ctx.fillText("DESCOBRE O TEU PERFIL", 60, 1475);
+    spacing(ctx, "0px");
+    ctx.fillStyle = CREMA;
+    ctx.font = F(800, 34);
+    ctx.fillText(`${location.host}`, 60, 1522);
+  }
+
+  /* ───────────── PÁXINA ───────────── */
+
+  function main() {
+    const raw = localStorage.getItem("cpg:resultado");
+    if (!raw) {
+      location.replace("/test");
+      return;
+    }
+    const { respostas } = JSON.parse(raw) as { modo: string; respostas: Record<number, number> };
+    const figuras = JSON.parse($("datos-personaxes").textContent ?? "[]") as Fig[];
+
+    const pos = calcular(test.preguntas as Pregunta[], respostas);
+
+    $("contido").classList.remove("hidden");
+    $("cuadrante").textContent = cuadrante(pos.x, pos.y);
+    $("coords").textContent = `Económico ${fmt(pos.x)} · Territorial ${fmt(pos.y)}`;
+
+    // punto do usuario no compás (soberanismo abaixo)
+    const cx = 300 + pos.x * 27;
+    const cy = 300 + pos.y * 27;
+    const capa = document.getElementById("capa-usuario");
+    if (capa) {
+      capa.innerHTML = `
+        <circle cx="${cx}" cy="${cy}" r="18" fill="#c53f56" opacity="0.2">
+          <animate attributeName="r" values="12;22;12" dur="2s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="${cx}" cy="${cy}" r="8" fill="#c53f56" stroke="#fff" stroke-width="2.5" />
+        <text x="${cx}" y="${cy - 16}" text-anchor="middle" font-size="13" font-weight="800" fill="#8f2a3c" stroke="#fff" stroke-width="3" paint-order="stroke">Ti</text>`;
+    }
+
+    const ranking = ordenarPorProximidade(pos, figuras);
+    $("afins").innerHTML = ranking
+      .slice(0, 6)
+      .map(
+        (r, idx) => `
+        <li data-id="${r.personaxe.id}">
+          <a href="/personaxe/${r.personaxe.id}" class="flex items-center gap-4 rounded-2xl border border-lina bg-papel p-3 pr-4 transition hover:border-realce hover:shadow">
+            <span class="w-5 text-center text-xl font-extrabold text-realce">${idx + 1}</span>
+            ${avatar(r.personaxe)}
+            <span class="flex-1">
+              <span class="block font-semibold leading-tight">${r.personaxe.nome}</span>
+              <span class="block text-xs text-sec">${r.personaxe.anos} · ${r.personaxe.taxonomia}</span>
+            </span>
+            <span class="text-sm font-bold">${r.afinidade}%</span>
+          </a>
+        </li>`
+      )
+      .join("");
+    const svg = document.getElementById("compass")!;
+    const luz = (id: string, on: boolean) =>
+      svg.querySelector(`a[data-id="${id}"]`)?.classList.toggle("iluminado", on);
+    $("afins")
+      .querySelectorAll<HTMLElement>("li[data-id]")
+      .forEach((li) => {
+        const id = li.dataset.id!;
+        li.addEventListener("mouseenter", () => luz(id, true));
+        li.addEventListener("mouseleave", () => luz(id, false));
+        li.addEventListener("focusin", () => luz(id, true));
+        li.addEventListener("focusout", () => luz(id, false));
+      });
+    // 12 eixos
+    $("eixos").innerHTML = calcularEixos(respostas)
+      .map(({ eixo: e, valor, n }) => {
+        const neg = valor !== null && valor < 0;
+        const w = valor === null ? 0 : Math.abs(valor) * 50;
+        const pct = valor === null ? 0 : Math.round(Math.abs(valor) * 100);
+        const lado = neg ? `right:50%;width:${w}%` : `left:50%;width:${w}%`;
+        const cor = neg ? "bg-realce" : "bg-tinta";
+        const marca =
+          valor === null
+            ? ""
+            : `<div class="absolute top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-papel bg-tinta" style="left:${50 + valor * 50}%"></div>`;
+        const etiqueta =
+          valor === null ? "Sen respostas" : pct < 10 ? "Equilibrado" : `${pct}% ${neg ? e.esq : e.dir}`;
+        return `
+        <article class="flex flex-col rounded-3xl border border-lina bg-papel p-5">
+          <p class="flex items-baseline gap-3">
+            <span class="text-xs font-bold text-realce">${e.n}</span>
+            <span class="text-xl font-bold">${e.titulo}</span>
+          </p>
+          <p class="mt-3 flex items-center justify-between gap-2 text-xs font-bold">
+            <span class="flex items-center gap-1.5">${icono(ICO[e.id][0])}${e.esq}</span>
+            <span class="flex items-center justify-end gap-1.5 text-right">${e.dir}${icono(ICO[e.id][1])}</span>
+          </p>
+          <div class="relative mt-3 h-3 rounded-full bg-lina">
+            <div class="absolute top-0 h-3 ${cor} rounded-full" style="${lado}"></div>
+            <div class="absolute left-1/2 top-[-3px] h-[18px] w-px bg-tinta/40"></div>
+            ${marca}
+          </div>
+          <p class="mt-2 text-center text-sm font-bold">${etiqueta}</p>
+          <p class="text-center text-[11px] text-sec">${n} preguntas</p>
+          <p class="mt-3 text-sm leading-relaxed text-sec">${e.desc}</p>
+        </article>`;
+      })
+      .join("");
+
+    // tarxeta
+    const canvas = $("tarxeta") as HTMLCanvasElement;
+    const feita = debuxarTarxeta(canvas, pos, ranking, figuras, respostas);
+    const nomeFicheiro = "compas-politico-galego.png";
+    const blob = () => new Promise<Blob | null>((r) => canvas.toBlob(r, "image/png"));
+
+    $("descargar").addEventListener("click", async () => {
+      await feita;
+      const b = await blob();
+      if (!b) return;
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(b);
+      a.download = nomeFicheiro;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+    });
+
+    if (typeof navigator.canShare === "function") {
+      $("compartir").classList.remove("hidden");
+      $("compartir").addEventListener("click", async () => {
+        await feita;
+        const b = await blob();
+        if (!b) return;
+        const file = new File([b], nomeFicheiro, { type: "image/png" });
+        if (navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({ files: [file], title: "O meu Compás Político Galego" });
+          } catch {}
+        }
+      });
+    }
+
+    $("copiar").addEventListener("click", async () => {
+      const top = ranking[0].personaxe.nome;
+      const txt = `O meu Compás Político Galego: ${cuadrante(pos.x, pos.y)} (económico ${fmt(pos.x)}, territorial ${fmt(pos.y)}). Figura máis afín: ${top}.`;
+      await navigator.clipboard.writeText(txt);
+      $("copiar").textContent = "Copiado ✓";
+    });
+  }
+
+  main();
+</script>

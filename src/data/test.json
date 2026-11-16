@@ -1,0 +1,675 @@
+{
+  "meta": {
+    "version": "8.0",
+    "titulo": "Political Compass Galego - Edición Masiva por Temáticas",
+    "escala_respostas": [
+      { "id": "totalmente_acordo", "etiqueta": "Totalmente de acordo", "multiplicador": 1.0 },
+      { "id": "acordo", "etiqueta": "De acordo", "multiplicador": 0.66 },
+      { "id": "pouco_acordo", "etiqueta": "Pouco de acordo", "multiplicador": 0.33 },
+      { "id": "neutro", "etiqueta": "Neutro", "multiplicador": 0.0 },
+      { "id": "pouco_desacordo", "etiqueta": "Pouco en desacordo", "multiplicador": -0.33 },
+      { "id": "desacordo", "etiqueta": "En desacordo", "multiplicador": -0.66 },
+      { "id": "totalmente_desacordo", "etiqueta": "Totalmente en desacordo", "multiplicador": -1.0 }
+    ],
+    "tematicas": [
+      "Economía e Modelo Social",
+      "Modelo Territorial e Xurídico",
+      "Lingua e Identidade Cultural",
+      "Sociedade, Dereitos e Igrexa",
+      "Memoria Histórica e Antifascismo",
+      "Estratexia Política e Poder"
+    ],
+    "modos": {
+      "rapido": { "nome": "Modo Rápido (30 preguntas)", "total": 30, "rango": [1, 30] },
+      "neutro": { "nome": "Modo Neutro (60 preguntas)", "total": 60, "rango": [1, 60] },
+      "preciso": { "nome": "Modo Preciso (120 preguntas)", "total": 120, "rango": [1, 120] }
+    }
+  },
+  "preguntas": [
+    {
+      "id": 1,
+      "tematica": "Economía e Modelo Social",
+      "afirmacion": "A terra e os recursos naturais estratéxicos deben ser de propiedade colectiva ou pública, abolindo os grandes latifundios.",
+      "peso_x": -3.0, "peso_y": 0.0
+    },
+    {
+      "id": 2,
+      "tematica": "Economía e Modelo Social",
+      "afirmacion": "O desenvolvemento de Galicia depende de atraer investimento privado, baixar impostos ás empresas e reducir trabas burocráticas.",
+      "peso_x": 3.0, "peso_y": -1.0
+    },
+    {
+      "id": 3,
+      "tematica": "Economía e Modelo Social",
+      "afirmacion": "Galicia funciona economicamente como unha colonia interior: expórtase enerxía e aforro mentres se estrangula o tecido produtivo.",
+      "peso_x": -2.5, "peso_y": 2.5
+    },
+    {
+      "id": 4,
+      "tematica": "Economía e Modelo Social",
+      "afirmacion": "A pequena e mediana propiedade familiar tradicional galega protexe mellor a terra ca a colectivización socialista ou o gran capitalismo.",
+      "peso_x": 2.0, "peso_y": 1.5
+    },
+    {
+      "id": 5,
+      "tematica": "Economía e Modelo Social",
+      "afirmacion": "A redención forzosa dos foros e a eliminación de cargas señoriais eran medidas indispensables para a xustiza no campo.",
+      "peso_x": -2.5, "peso_y": 0.5
+    },
+
+    {
+      "id": 6,
+      "tematica": "Modelo Territorial e Xurídico",
+      "afirmacion": "Galicia é unha nación con dereito pleno á autodeterminación e a constituírse nun Estado propio ou confederal.",
+      "peso_x": -0.5, "peso_y": 3.0
+    },
+    {
+      "id": 7,
+      "tematica": "Modelo Territorial e Xurídico",
+      "afirmacion": "O actual Estado das Autonomías dentro da unidade indisoluble de España é o mellor marco para garantir a estabilidade.",
+      "peso_x": 1.5, "peso_y": -3.0
+    },
+    {
+      "id": 8,
+      "tematica": "Modelo Territorial e Xurídico",
+      "afirmacion": "Galicia precisa dun Concerto Económico propio e unha Facenda Galega que recade todos os impostos xerados no país.",
+      "peso_x": -0.5, "peso_y": 3.0
+    },
+    {
+      "id": 9,
+      "tematica": "Modelo Territorial e Xurídico",
+      "afirmacion": "Calquera Estado —sexa o español ou un hipotético Estado galego— é unha estrutura autoritaria que debe ser abolida.",
+      "peso_x": -3.0, "peso_y": 1.5
+    },
+    {
+      "id": 10,
+      "tematica": "Modelo Territorial e Xurídico",
+      "afirmacion": "O dereito consuetudinario galego e os montes en man común son superiores aos códigos civís centralistas de Madrid.",
+      "peso_x": 0.5, "peso_y": 2.0
+    },
+
+    {
+      "id": 11,
+      "tematica": "Lingua e Identidade Cultural",
+      "afirmacion": "O galego debe ser a única lingua oficial e vehicular en toda a administración, ensino e xustiza de Galicia.",
+      "peso_x": -1.0, "peso_y": 2.5
+    },
+    {
+      "id": 12,
+      "tematica": "Lingua e Identidade Cultural",
+      "afirmacion": "O bilingüismo harmonioso e a liberdade individual de elixir idioma en calquera ámbito son o mellor camiño social.",
+      "peso_x": 1.5, "peso_y": -1.5
+    },
+    {
+      "id": 13,
+      "tematica": "Lingua e Identidade Cultural",
+      "afirmacion": "A verdadeira cultura galega nace do pobo labrego e mariñeiro, rexeitando calquera elitismo cosmopolita.",
+      "peso_x": -2.0, "peso_y": 1.0
+    },
+    {
+      "id": 14,
+      "tematica": "Lingua e Identidade Cultural",
+      "afirmacion": "A alta cultura, a tradición clásica e a estética universal son as que realmente elevan a dignidade dun pobo.",
+      "peso_x": 2.0, "peso_y": 1.0
+    },
+    {
+      "id": 15,
+      "tematica": "Lingua e Identidade Cultural",
+      "afirmacion": "Os medios de comunicación públicos en Galicia deben primar de forma case exclusiva a creación e información en lingua galega.",
+      "peso_x": -1.5, "peso_y": 1.5
+    },
+
+    {
+      "id": 16,
+      "tematica": "Sociedade, Dereitos e Igrexa",
+      "afirmacion": "Non pode haber liberación nacional nin xustiza real en Galicia sen rachar co patriarcado histórico que subordinou as mulleres.",
+      "peso_x": -2.0, "peso_y": 1.5
+    },
+    {
+      "id": 17,
+      "tematica": "Sociedade, Dereitos e Igrexa",
+      "afirmacion": "A tradición católica e os valores morais tradicionais son o alicerce fundamental que mantén unida a sociedade galega.",
+      "peso_x": 2.5, "peso_y": 1.0
+    },
+    {
+      "id": 18,
+      "tematica": "Sociedade, Dereitos e Igrexa",
+      "afirmacion": "O poder da Igrexa Católica e do caciquismo agrario foron os principais responsables do atraso histórico de Galicia.",
+      "peso_x": -2.5, "peso_y": 0.5
+    },
+    {
+      "id": 19,
+      "tematica": "Sociedade, Dereitos e Igrexa",
+      "afirmacion": "A sociedade funciona mellor cando se organiza en corporacións naturais e familias en lugar de partidos políticos que dividen.",
+      "peso_x": 2.5, "peso_y": -1.5
+    },
+    {
+      "id": 20,
+      "tematica": "Sociedade, Dereitos e Igrexa",
+      "afirmacion": "Os dereitos civis e sociais individuais deben prevalecer sobre calquera concepto abstracto de identidade nacional ou relixiosa.",
+      "peso_x": -1.0, "peso_y": 0.5
+    },
+
+    {
+      "id": 21,
+      "tematica": "Memoria Histórica e Antifascismo",
+      "afirmacion": "Os partidos republicanos españois de esquerda na II República demostraron un centralismo tan feroz coma o da dereita.",
+      "peso_x": -0.5, "peso_y": 2.5
+    },
+    {
+      "id": 22,
+      "tematica": "Memoria Histórica e Antifascismo",
+      "afirmacion": "A etapa de Manuel Fraga na Xunta trouxo a estabilidade e o sentidiño que Galicia necesitaba trala incerteza da Transición.",
+      "peso_x": 2.5, "peso_y": -2.5
+    },
+    {
+      "id": 23,
+      "tematica": "Memoria Histórica e Antifascismo",
+      "afirmacion": "O Consello de Galiza fundado por Castelao en Montevideo foi o único goberno lexítimo de Galicia durante a ditadura franquista.",
+      "peso_x": -1.0, "peso_y": 2.5
+    },
+    {
+      "id": 24,
+      "tematica": "Memoria Histórica e Antifascismo",
+      "afirmacion": "En momentos de grave crise social ou risco de ruptura, un Estado forte, unitario e autoritarios é preferible á desorde.",
+      "peso_x": 2.0, "peso_y": -3.0
+    },
+    {
+      "id": 25,
+      "tematica": "Memoria Histórica e Antifascismo",
+      "afirmacion": "Durante o franquismo, a estratexia de Ramón Piñeiro de centrarse na resistencia cultural foi un acerto brillante e realista.",
+      "peso_x": 0.5, "peso_y": -1.0
+    },
+
+    {
+      "id": 26,
+      "tematica": "Estratexia Política e Poder",
+      "afirmacion": "A emancipación da clase obreira é universal; un traballador galego ten máis en común cun obreiro de Madrid ca cun empresario galego.",
+      "peso_x": -3.0, "peso_y": -1.5
+    },
+    {
+      "id": 27,
+      "tematica": "Estratexia Política e Poder",
+      "afirmacion": "En contextos de opresión colonial ou ditadura, a resistencia radical e mesmo a vía armada son lexítimas para conquistar a liberdade.",
+      "peso_x": -2.5, "peso_y": 3.0
+    },
+    {
+      "id": 28,
+      "tematica": "Estratexia Política e Poder",
+      "afirmacion": "Os traballadores galegos deben organizarse exclusivamente en sindicatos galegos e non en centrais estatais.",
+      "peso_x": -2.0, "peso_y": 2.5
+    },
+    {
+      "id": 29,
+      "tematica": "Estratexia Política e Poder",
+      "afirmacion": "A solución política ideal para Galicia é unha República Federal ou Confederal Ibérica xunto con Portugal e os demais pobos ibéricos.",
+      "peso_x": -1.0, "peso_y": 2.5
+    },
+    {
+      "id": 30,
+      "tematica": "Estratexia Política e Poder",
+      "afirmacion": "O Estatuto de Autonomía de 1981 foi unha oportunidade histórica que deixou a Galicia nunha posición de autogoberno satisfactoria.",
+      "peso_x": 1.0, "peso_y": -2.5
+    },
+
+    {
+      "id": 31, "tematica": "Economía e Modelo Social", "afirmacion": "A banca pública galega é indispensable para evitar que o aforro do país financie proxectos alleos aos nosos intereses.", "peso_x": -2.5, "peso_y": 2.0
+    },
+    {
+      "id": 32, "tematica": "Economía e Modelo Social", "afirmacion": "A liberalización do solo e a redución de licenzas urbanísticas son a clave para abaratar a vivenda en Galicia.", "peso_x": 2.5, "peso_y": -1.0
+    },
+    {
+      "id": 33, "tematica": "Economía e Modelo Social", "afirmacion": "O cooperativismo agrario e mariñeiro debe substituír ás grandes corporacións de distribución alimentaria.", "peso_x": -2.5, "peso_y": 1.0
+    },
+    {
+      "id": 34, "tematica": "Economía e Modelo Social", "afirmacion": "A privatización de servizos públicos periféricos mellora a eficiencia e reduce o gasto superfluo da administración autonómica.", "peso_x": 3.0, "peso_y": -1.5
+    },
+    {
+      "id": 35, "tematica": "Economía e Modelo Social", "afirmacion": "O sector enerxético galego (hidroeléctrica e eólica) debe ser nacionalizado para que os beneficios redunden directamente no pobo.", "peso_x": -3.0, "peso_y": 2.5
+    },
+    {
+      "id": 36, "tematica": "Modelo Territorial e Xurídico", "afirmacion": "As deputacións provinciais son organismos obsoletos e caciquiles que deben ser suprimidos en favor dunha comarcalización real.", "peso_x": -1.0, "peso_y": 2.0
+    },
+    {
+      "id": 37, "tematica": "Modelo Territorial e Xurídico", "afirmacion": "O concello e a parroquia son as únicas células políticas auténticas; calquera estrutura intermediaria é innecesaria.", "peso_x": -0.5, "peso_y": 2.0
+    },
+    {
+      "id": 38, "tematica": "Modelo Territorial e Xurídico", "afirmacion": "A lexislación galega en materia de ordenación do territorio debe estar subordinada ás directrices xerais ditadas polo Estado español.", "peso_x": 1.0, "peso_y": -3.0
+    },
+    {
+      "id": 39, "tematica": "Modelo Territorial e Xurídico", "afirmacion": "Galicia debe romper calquera lazo institucional con España e integrarse nunha Europa das Nacións sen Estado.", "peso_x": -1.0, "peso_y": 3.0
+    },
+    {
+      "id": 40, "tematica": "Modelo Territorial e Xurídico", "afirmacion": "O centralismo madrileño é un mito; o verdadeiro problema de Galicia é a ineficiencia na xestión das súas propias institucións.", "peso_x": 2.0, "peso_y": -2.0
+    },
+
+    {
+      "id": 41, "tematica": "Lingua e Identidade Cultural", "afirmacion": "A toponimia galega debe ser recuperada na súa forma tradicional e oral orixinal sen adaptcións castelán-normativas.", "peso_x": -1.0, "peso_y": 2.0
+    },
+    {
+      "id": 42, "tematica": "Lingua e Identidade Cultural", "afirmacion": "O rexenoracionismo cultural galego debe mirar cara a Portugal e ao mundo lusófono antes ca cara a Castela.", "peso_x": -0.5, "peso_y": 2.5
+    },
+    {
+      "id": 43, "tematica": "Lingua e Identidade Cultural", "afirmacion": "O uso de normas ortográficas reintegracionistas (reagrupamento co portugués) é un ataque artificial á nosa identidade diferenciada.", "peso_x": 1.0, "peso_y": -1.5
+    },
+    {
+      "id": 44, "tematica": "Lingua e Identidade Cultural", "afirmacion": "A literatura galega contemporánea debe universalizarse e deixar de centrarse en temáticas exclusivamente aldeás ou telúricas.", "peso_x": 1.0, "peso_y": 0.5
+    },
+    {
+      "id": 45, "tematica": "Lingua e Identidade Cultural", "afirmacion": "O camiño de Santiago e a tradición xacobea son a peza angular que conectou historicamente a Galicia coa alta cultura europea.", "peso_x": 2.0, "peso_y": 1.0
+    },
+
+    {
+      "id": 46, "tematica": "Sociedade, Dereitos e Igrexa", "afirmacion": "A escola pública galega debe ser laica, imprensindiblemente en galego e libre de calquera adoutrinamento relixioso.", "peso_x": -2.0, "peso_y": 1.5
+    },
+    {
+      "id": 47, "tematica": "Sociedade, Dereitos e Igrexa", "afirmacion": "A familia tradicional formada por home e muller debe recibir protección e axudas especiais por riba de calquera outro modelo.", "peso_x": 2.0, "peso_y": 0.0
+    },
+    {
+      "id": 48, "tematica": "Sociedade, Dereitos e Igrexa", "afirmacion": "A emigración galega a América e Europa foi un drama demográfico irreparable provocado polas políticas estatais de abandono.", "peso_x": -2.0, "peso_y": 2.0
+    },
+    {
+      "id": 49, "tematica": "Sociedade, Dereitos e Igrexa", "afirmacion": "A mocidade galega actual ten máis oportunidades de progreso ca nunca grazas á estabilidade do marco autonómico e europeo.", "peso_x": 2.0, "peso_y": -2.0
+    },
+    {
+      "id": 50, "tematica": "Sociedade, Dereitos e Igrexa", "afirmacion": "As políticas sociais e de igualdade deben xestionarse dende o concello, adaptándose ás singularidades de cada comarca.", "peso_x": 0.0, "peso_y": 1.0
+    },
+
+    {
+      "id": 51, "tematica": "Memoria Histórica e Antifascismo", "afirmacion": "A guerrilla antifranquista (os maquis) foi un movemento heroico de resistencia popular contra a tiranía militar.", "peso_x": -3.0, "peso_y": 2.5
+    },
+    {
+      "id": 52, "tematica": "Memoria Histórica e Antifascismo", "afirmacion": "A Lei de Amnistía da Transición pechou en falso as feridas do franquismo e impediu xulgar os crimes da ditadura.", "peso_x": -2.5, "peso_y": 2.0
+    },
+    {
+      "id": 53, "tematica": "Memoria Histórica e Antifascismo", "afirmacion": "O galeguismo conservador de posguerra fixo o que puido para salvar a nosa cultura baixo un réxime autoritario.", "peso_x": 1.5, "peso_y": -1.5
+    },
+    {
+      "id": 54, "tematica": "Memoria Histórica e Antifascismo", "afirmacion": "A II República galega foi unha ilusión romántica que carecía dunha base real de apoio na sociedade rural galega.", "peso_x": 1.5, "peso_y": -1.0
+    },
+    {
+      "id": 55, "tematica": "Memoria Histórica e Antifascismo", "afirmacion": "A figura de Alexandre Bóveda e o seu asasinato son o símbolo máximo da traxedia democrática e galeguista de 1936.", "peso_x": -1.5, "peso_y": 2.5
+    },
+
+    {
+      "id": 56, "tematica": "Estratexia Política e Poder", "afirmacion": "O nacionalismo galego debe moderar as súas ambicións soberanistas para poder pactar con calquera forza estatal de goberno.", "peso_x": 1.0, "peso_y": -2.0
+    },
+    {
+      "id": 57, "tematica": "Estratexia Política e Poder", "afirmacion": "A acumulación de forzas institucionais é inútil se non vai acompañada dunha mobilización social e dunha confrontación directa co Estado.", "peso_x": -2.5, "peso_y": 2.5
+    },
+    {
+      "id": 58, "tematica": "Estratexia Política e Poder", "afirmacion": "A política galega debe centrarse estrictamente na xestión cotiá e administrativa, apartando os debates identitarios estériles.", "peso_x": 2.0, "peso_y": -2.5
+    },
+    {
+      "id": 59, "tematica": "Estratexia Política e Poder", "afirmacion": "O municipalismo transformador é a verdadeira escola para construír a soberanía de Galicia dende abaixo.", "peso_x": -2.0, "peso_y": 2.0
+    },
+    {
+      "id": 60, "tematica": "Estratexia Política e Poder", "afirmacion": "A participación en gobernos de coalición estatais debilita a axenda propia do nacionalismo galego.", "peso_x": -1.5, "peso_y": 2.0
+    },
+    {
+      "id": 61,
+      "tematica": "Economía e Modelo Social",
+      "afirmacion": "A tarifa eléctrica galega propia é unha esixencia de xustiza básica dado que Galicia sofre o impacto ambiental de producir excedentes enerxéticos.",
+      "peso_x": -2.0, "peso_y": 2.5
+    },
+    {
+      "id": 62,
+      "tematica": "Economía e Modelo Social",
+      "afirmacion": "O turismo masivo e a explotación do Camiño de Santiago son motores de riqueza indispensábeis que non deben ser freados con taxas ecolóxicas.",
+      "peso_x": 2.5, "peso_y": -1.0
+    },
+    {
+      "id": 63,
+      "tematica": "Economía e Modelo Social",
+      "afirmacion": "A reconversión industrial dos anos 80 (estaleiros de Vigo e Ferrol) foi un desmantelamento pactado desde Madrid para eliminar o poder sindical galego.",
+      "peso_x": -3.0, "peso_y": 2.0
+    },
+    {
+      "id": 64,
+      "tematica": "Economía e Modelo Social",
+      "afirmacion": "O minifundismo agrario galego é un lastre histórico de ineficiencia que debe ser superado mediante a concentración parcelaria e a empresa agroindustrial.",
+      "peso_x": 2.5, "peso_y": -1.0
+    },
+    {
+      "id": 65,
+      "tematica": "Economía e Modelo Social",
+      "afirmacion": "As caixas de aforros galegas (Caixa Galicia e Caixanova) deberon ser rescatadas como banca pública autonómica en lugar de seren malvendidas ao capital privado.",
+      "peso_x": -2.5, "peso_y": 2.0
+    },
+    {
+      "id": 66,
+      "tematica": "Economía e Modelo Social",
+      "afirmacion": "A instalación de macroproxectos de celulosa ou minería a ceo aberto é asumible se garante postos de traballo nas comarcas do interior.",
+      "peso_x": 3.0, "peso_y": -1.5
+    },
+    {
+      "id": 67,
+      "tematica": "Economía e Modelo Social",
+      "afirmacion": "O sistema de cotas pesqueiras da Unión Europea destruíu deliberadamente a frota de altura e baixura galega en beneficio das potencias do norte.",
+      "peso_x": -2.0, "peso_y": 2.0
+    },
+    {
+      "id": 68,
+      "tematica": "Economía e Modelo Social",
+      "afirmacion": "O despoboamento do rural galego só se reverterá incentivando fiscalmente o emprendemento privado e a atracción de nómades dixitais.",
+      "peso_x": 2.5, "peso_y": -0.5
+    },
+    {
+      "id": 69,
+      "tematica": "Economía e Modelo Social",
+      "afirmacion": "Os montes veciñais en man común representan un modelo exemplar de xestión colectiva e sostible que debería estenderse a outros sectores.",
+      "peso_x": -2.5, "peso_y": 1.5
+    },
+    {
+      "id": 70,
+      "tematica": "Economía e Modelo Social",
+      "afirmacion": "A existencia dun salario mínimo interprofesional único en toda España prexudica a competitividade das pequenas empresas galegas.",
+      "peso_x": 3.0, "peso_y": -1.0
+    },
+
+    {
+      "id": 71,
+      "tematica": "Modelo Territorial e Xurídico",
+      "afirmacion": "O artigo 2 da Constitución española sobre a indisoluble unidade da Nación española é un candado antidemocrático que impide o dereito a decidir.",
+      "peso_x": -1.0, "peso_y": 3.0
+    },
+    {
+      "id": 72,
+      "tematica": "Modelo Territorial e Xurídico",
+      "afirmacion": "Galicia debería aspirar ao mesmo nivel de recoñecemento xurídico e bilateralidade co Estado ca Cataluña e Euskadi, superando o café para todos.",
+      "peso_x": -0.5, "peso_y": 2.5
+    },
+    {
+      "id": 73,
+      "tematica": "Modelo Territorial e Xurídico",
+      "afirmacion": "As competencias transferidas á Xunta de Galicia xa son excesivas; deberíanse devolver a Madrid áreas clave como a sanidade ou a educación.",
+      "peso_x": 2.0, "peso_y": -3.0
+    },
+    {
+      "id": 74,
+      "tematica": "Modelo Territorial e Xurídico",
+      "afirmacion": "A creación dunha policía integral galega propia que substitúa á Policía Nacional e á Garda Civil é un paso esencial cara á soberanía.",
+      "peso_x": -0.5, "peso_y": 2.5
+    },
+    {
+      "id": 75,
+      "tematica": "Modelo Territorial e Xurídico",
+      "afirmacion": "A eurorrexión Galicia-Norte de Portugal debe evolucionar cara a unha integración xurídica e económica real, diluíndo a fronteira do Miño.",
+      "peso_x": -1.0, "peso_y": 2.5
+    },
+    {
+      "id": 76,
+      "tematica": "Modelo Territorial e Xurídico",
+      "afirmacion": "A reforma do Estatuto de Autonomía de Galicia para incluír o termo 'nación' no seu preámbulo é unha prioridade xurídica inaprazable.",
+      "peso_x": -0.5, "peso_y": 2.5
+    },
+    {
+      "id": 77,
+      "tematica": "Modelo Territorial e Xurídico",
+      "afirmacion": "O sistema de financiamento autonómico común beneficia a Galicia porque recibe máis fondos do Estado dos que achega en impostos.",
+      "peso_x": 1.5, "peso_y": -2.5
+    },
+    {
+      "id": 78,
+      "tematica": "Modelo Territorial e Xurídico",
+      "afirmacion": "A xustiza en Galicia debe rexerse por un Consello do Poder Xudicial Galego totalmente independente do CGPJ de Madrid.",
+      "peso_x": -0.5, "peso_y": 2.5
+    },
+    {
+      "id": 79,
+      "tematica": "Modelo Territorial e Xurídico",
+      "afirmacion": "A división provincial de Javier de Burgos (1833) é unha imposición centralista artificial que rompeu a estrutura histórica das sete provincias do Reino de Galicia.",
+      "peso_x": 0.0, "peso_y": 2.0
+    },
+    {
+      "id": 80,
+      "tematica": "Modelo Territorial e Xurídico",
+      "afirmacion": "A lealdade constitucional á Coroa e ás institucións xerais do Estado é a única garantía de convivencia pacífica en Galicia.",
+      "peso_x": 2.0, "peso_y": -3.0
+    },
+
+    {
+      "id": 81,
+      "tematica": "Lingua e Identidade Cultural",
+      "afirmacion": "O Decreto do Plurilingüismo (2010) supuxo un ataque institucional que prohibiu impartir materias científicas en galego no ensino.",
+      "peso_x": -1.5, "peso_y": 2.0
+    },
+    {
+      "id": 82,
+      "tematica": "Lingua e Identidade Cultural",
+      "afirmacion": "Os pais teñen o dereito fundamental a que os seus fillos reciban o ensino vehicular en castelán se así o solicitan nos centros públicos.",
+      "peso_x": 2.0, "peso_y": -2.0
+    },
+    {
+      "id": 83,
+      "tematica": "Lingua e Identidade Cultural",
+      "afirmacion": "O esixencia de acreditar o coñecemento do galego (CELGA) para acceder a unha praza na sanidade pública reduce a chegada de bos médicos de fóra.",
+      "peso_x": 2.0, "peso_y": -2.0
+    },
+    {
+      "id": 84,
+      "tematica": "Lingua e Identidade Cultural",
+      "afirmacion": "A Real Academia Galega foi excesivamente conservadora e cómpre abrir a normativa oficial ás solucións léxicas e ortográficas do espazo lusófono.",
+      "peso_x": -1.0, "peso_y": 2.0
+    },
+    {
+      "id": 85,
+      "tematica": "Lingua e Identidade Cultural",
+      "afirmacion": "A diglosia en Galicia non se resolverá con leis nin multas, senón facendo que o galego sexa atractivo na cultura urbana e tecnolóxica.",
+      "peso_x": 1.0, "peso_y": -0.5
+    },
+    {
+      "id": 86,
+      "tematica": "Lingua e Identidade Cultural",
+      "afirmacion": "A existencia dunha selección deportiva nacional galega oficial que compita internacionalmente é un dereito cultural e identitario irrenunciable.",
+      "peso_x": -0.5, "peso_y": 2.5
+    },
+    {
+      "id": 87,
+      "tematica": "Lingua e Identidade Cultural",
+      "afirmacion": "O celtismo histórico de Murguía e Pondal foi un mito romántico útil no século XIX, pero hoxe carece de rigor científico e político.",
+      "peso_x": 0.5, "peso_y": -0.5
+    },
+    {
+      "id": 88,
+      "tematica": "Lingua e Identidade Cultural",
+      "afirmacion": "A etnoloxía e a antropoloxía da Xeración Nós idealizaron un mundo rural atrasado que impediu ver as contradicións de clase no campo.",
+      "peso_x": -2.0, "peso_y": -0.5
+    },
+    {
+      "id": 89,
+      "tematica": "Lingua e Identidade Cultural",
+      "afirmacion": "O himno galego ('Os Pinos') e a bandeira branca coa franxa azul representan a todos os galegos con independencia da súa ideoloxía.",
+      "peso_x": 0.5, "peso_y": 0.5
+    },
+    {
+      "id": 90,
+      "tematica": "Lingua e Identidade Cultural",
+      "afirmacion": "A inmersión lingüística total en galego nas escolas infantís é a única vía científica para compensar o peso esmagador do castelán nos medios.",
+      "peso_x": -1.5, "peso_y": 2.5
+    },
+
+    {
+      "id": 91,
+      "tematica": "Sociedade, Dereitos e Igrexa",
+      "afirmacion": "O matriarcado galego é un mito literario inventado para ocultar a dobre explotación laboral e doméstica que sufriron as mulleres galegas.",
+      "peso_x": -2.5, "peso_y": 1.0
+    },
+    {
+      "id": 92,
+      "tematica": "Sociedade, Dereitos e Igrexa",
+      "afirmacion": "A Igrexa católica galega, a través de figuras como o Padre Sarmiento ou o Concilio Vaticano II, desempeñou un papel positivo na defensa da lingua.",
+      "peso_x": 1.5, "peso_y": 0.5
+    },
+    {
+      "id": 93,
+      "tematica": "Sociedade, Dereitos e Igrexa",
+      "afirmacion": "Deben suprimirse todas as exencións fiscais (IBI) e achegas públicas ás institucións eclesiásticas en Galicia.",
+      "peso_x": -2.0, "peso_y": 0.5
+    },
+    {
+      "id": 94,
+      "tematica": "Sociedade, Dereitos e Igrexa",
+      "afirmacion": "O caciquismo non foi só un fenómeno político do século XIX, senón unha cultura clientelar que segue viva nas deputacións e concellos galegos.",
+      "peso_x": -1.5, "peso_y": 1.0
+    },
+    {
+      "id": 95,
+      "tematica": "Sociedade, Dereitos e Igrexa",
+      "afirmacion": "O movemento ecoloxista 'Nunca Máis' trala catástrofe do Prestige foi a maior demostración de madurez cívica e autoorganización do pobo galego.",
+      "peso_x": -2.0, "peso_y": 2.0
+    },
+    {
+      "id": 96,
+      "tematica": "Sociedade, Dereitos e Igrexa",
+      "afirmacion": "A plataforma 'Nunca Máis' foi instrumentalizada politicamente pola esquerda nacionalista para desgastar lexitimamente a un goberno democrático.",
+      "peso_x": 2.5, "peso_y": -2.0
+    },
+    {
+      "id": 97,
+      "tematica": "Sociedade, Dereitos e Igrexa",
+      "afirmacion": "A defensa dos dereitos LGTBIQ+ e o feminismo interseccional son piares inseparables do proxecto de construción nacional galego.",
+      "peso_x": -2.5, "peso_y": 1.5
+    },
+    {
+      "id": 98,
+      "tematica": "Sociedade, Dereitos e Igrexa",
+      "afirmacion": "O envellecemento poboacional de Galicia debe combatirse con políticas natalistas tradicionais e axudas directas ás familias numerosas.",
+      "peso_x": 2.0, "peso_y": -0.5
+    },
+    {
+      "id": 99,
+      "tematica": "Sociedade, Dereitos e Igrexa",
+      "afirmacion": "A acollida e integración de poboación inmigrante é unha obrigación ética dun pobo coma o galego, marcado historicamente pola diáspora.",
+      "peso_x": -1.5, "peso_y": 1.0
+    },
+    {
+      "id": 100,
+      "tematica": "Sociedade, Dereitos e Igrexa",
+      "afirmacion": "As romarías, festas gastronómicas e tradicións populares son a expresión máis xenuína da cohesión social galega sen necesidade de politizalas.",
+      "peso_x": 1.5, "peso_y": -1.0
+    },
+
+    {
+      "id": 101,
+      "tematica": "Memoria Histórica e Antifascismo",
+      "afirmacion": "As Revoltas Irmandiñas do século XV foron a primeira revolución social europea contra o feudalismo e un antecedente da soberanía popular galega.",
+      "peso_x": -2.5, "peso_y": 2.5
+    },
+    {
+      "id": 102,
+      "tematica": "Memoria Histórica e Antifascismo",
+      "afirmacion": "Os Mártires de Carral (1846) representan o sacrificio heroico pola liberdade de Galicia fronte ao centralismo autoritario de Narváez.",
+      "peso_x": -1.0, "peso_y": 2.5
+    },
+    {
+      "id": 103,
+      "tematica": "Memoria Histórica e Antifascismo",
+      "afirmacion": "O Pazo de Meirás e a Casa Cornide deben ser devoltos ao patrimonio público sen ningún tipo de indemnización aos herdeiros da familia Franco.",
+      "peso_x": -2.0, "peso_y": 1.5
+    },
+    {
+      "id": 104,
+      "tematica": "Memoria Histórica e Antifascismo",
+      "afirmacion": "Reabrir debates sobre a Guerra Civil e o franquismo oitenta anos despois só serve para dividir á sociedade galega e reabrir vellas rancores.",
+      "peso_x": 2.5, "peso_y": -2.0
+    },
+    {
+      "id": 105,
+      "tematica": "Memoria Histórica e Antifascismo",
+      "afirmacion": "A figura de Moncho Reboiras debe ser recoñecida institucionalmente polo Parlamento de Galicia como vítima da represión franquista e loitador pola liberdade.",
+      "peso_x": -2.5, "peso_y": 2.5
+    },
+    {
+      "id": 106,
+      "tematica": "Memoria Histórica e Antifascismo",
+      "afirmacion": "A alianza do Partido Galeguista coa Fronte Popular en 1936 foi un erro estratéxico que provocou a escisión da Dereita Galeguista de Risco e Filgueira.",
+      "peso_x": 2.0, "peso_y": 0.5
+    },
+    {
+      "id": 107,
+      "tematica": "Memoria Histórica e Antifascismo",
+      "afirmacion": "O plebiscito do Estatuto de Autonomía do 28 de xuño de 1936 outorgoulle a Galicia a condición de nacionalidade histórica de pleno dereito.",
+      "peso_x": -0.5, "peso_y": 2.0
+    },
+    {
+      "id": 108,
+      "tematica": "Memoria Histórica e Antifascismo",
+      "afirmacion": "A folga xeral de Vigo de setembro de 1972 foi o verdadeiro punto de inflexión que derrubou o sindicalismo vertical franquista en Galicia.",
+      "peso_x": -2.5, "peso_y": 1.5
+    },
+    {
+      "id": 109,
+      "tematica": "Memoria Histórica e Antifascismo",
+      "afirmacion": "O exilio galego en Buenos Aires e Montevideo quedou desconectado da realidade social da Galicia interior a partir dos anos 60.",
+      "peso_x": 0.5, "peso_y": -1.0
+    },
+    {
+      "id": 110,
+      "tematica": "Memoria Histórica e Antifascismo",
+      "afirmacion": "A defensa da Coruña liderada por María Pita en 1589 é un exemplo de patriotismo español fronte aos inimigos da Coroa.",
+      "peso_x": 2.0, "peso_y": -2.5
+    },
+
+    {
+      "id": 111,
+      "tematica": "Estratexia Política e Poder",
+      "afirmacion": "A autoorganización política propia (partidos e sindicatos estritamente galegos) é a única vía para que Galicia teña voz real nas institucións.",
+      "peso_x": -1.5, "peso_y": 3.0
+    },
+    {
+      "id": 112,
+      "tematica": "Estratexia Política e Poder",
+      "afirmacion": "Os partidos nacionalistas periféricos teñen unha representación desproporcionada no Congreso que prexudica o interese xeral de España.",
+      "peso_x": 2.0, "peso_y": -3.0
+    },
+    {
+      "id": 113,
+      "tematica": "Estratexia Política e Poder",
+      "afirmacion": "O nacionalismo galego debe construir unha fronte ampla cos movementos sociais e ecoloxistas aínda que iso implique rebaixar o perfil independentista.",
+      "peso_x": -1.5, "peso_y": 0.5
+    },
+    {
+      "id": 114,
+      "tematica": "Estratexia Política e Poder",
+      "afirmacion": "As maiorías absolutas do PPdeG en Galicia demostran que a sociedade galega é maioritariamente moderada, conservadora e refractaria aos extremismos.",
+      "peso_x": 2.5, "peso_y": -2.5
+    },
+    {
+      "id": 115,
+      "tematica": "Estratexia Política e Poder",
+      "afirmacion": "A hegemonía electoral da dereita en Galicia explícase polo control dos medios públicos (CRTVG) e as redes clientelares no rural.",
+      "peso_x": -2.0, "peso_y": 2.0
+    },
+    {
+      "id": 116,
+      "tematica": "Estratexia Política e Poder",
+      "afirmacion": "A participación electoral nas institucións autonómicas lexitima un réxime estatutario insuficiente; cómpre priorizar a contrapoder popular.",
+      "peso_x": -2.5, "peso_y": 3.0
+    },
+    {
+      "id": 117,
+      "tematica": "Estratexia Política e Poder",
+      "afirmacion": "Un goberno bipartito ou de coalición progresista na Xunta (PSdeG + BNG) é a única alternativa realista para desaloxar á dereita.",
+      "peso_x": -1.5, "peso_y": 1.0
+    },
+    {
+      "id": 118,
+      "tematica": "Estratexia Política e Poder",
+      "afirmacion": "A prensa rexional galega cumpriu historicamente un papel fundamental na modernización do país sen necesidade de ruptura política.",
+      "peso_x": 1.5, "peso_y": -1.5
+    },
+    {
+      "id": 119,
+      "tematica": "Estratexia Política e Poder",
+      "afirmacion": "O internacionalismo solidario cos pobos sen Estado (Palestina, Sáhara, Kurdistán) debe ser un eixe central da acción exterior galega.",
+      "peso_x": -2.5, "peso_y": 2.5
+    },
+    {
+      "id": 120,
+      "tematica": "Estratexia Política e Poder",
+      "afirmacion": "O futuro de Galicia pasa por liderar un proxecto de rexeneración democrática e económica para o conxunto de España desde o sentidiño.",
+      "peso_x": 2.0, "peso_y": -2.5
+    }
+  ]
+}

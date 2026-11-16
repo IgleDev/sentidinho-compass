@@ -1,0 +1,71 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Compass from "../../components/Compass.astro";
+import Avatar from "../../components/Avatar.astro";
+import { getPersonaxes } from "../../lib/personaxes";
+
+export async function getStaticPaths() {
+  const todas = await getPersonaxes();
+  return todas.map((p) => ({ params: { id: p.id }, props: { p, todas } }));
+}
+
+const { p, todas } = Astro.props;
+const fmt = (n: number) => (n > 0 ? "+" : "") + n.toFixed(1);
+
+const campos = [
+  { titulo: "Marco xurídico", texto: p.marco_xuridico },
+  { titulo: "Posición teórica", texto: p.posicion_teorica },
+  { titulo: "Obra clave", texto: p.obra_clave },
+];
+---
+
+<Layout title={`${p.nome} · Compás Político Galego`} description={p.posicion_teorica}>
+  <section class="mx-auto max-w-5xl px-4 py-12">
+    <a href="/personaxes" class="text-sm font-medium text-pino hover:underline">← Todas as personaxes</a>
+
+    <div class="mt-6 grid gap-10 lg:grid-cols-2">
+      <div>
+        <div class="flex items-center gap-5">
+          <Avatar nome={p.nome} imaxe={p.imaxe} redondo={false} class="h-32 w-32 text-3xl" />
+          <div>
+            <p class="text-sm font-semibold text-tinta/60">{p.anos}</p>
+            <h1 class="mt-1 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">{p.nome}</h1>
+          </div>
+        </div>
+
+        <p class="mt-5 inline-block rounded-full bg-galego-50 px-3 py-1 text-sm font-semibold text-galego-700">
+          {p.taxonomia}
+        </p>
+
+        {
+          p.cita && (
+            <blockquote class="mt-6 border-l-4 border-realce pl-4 text-lg italic text-sec">
+              {p.cita}
+            </blockquote>
+          )
+        }
+
+        <dl class="mt-8 space-y-5">
+          {
+            campos.map((c) => (
+              <div>
+                <dt class="text-xs font-semibold uppercase tracking-wide text-tinta/60">{c.titulo}</dt>
+                <dd class="mt-1">{c.texto}</dd>
+              </div>
+            ))
+          }
+          <div>
+            <dt class="text-xs font-semibold uppercase tracking-wide text-tinta/60">Coordenadas</dt>
+            <dd class="mt-1">
+              Económico {fmt(p.coordenadas.x)} · Territorial {fmt(p.coordenadas.y)}
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+      <div>
+        <Compass personaxes={todas} destacar={p.id} />
+      </div>
+    </div>
+  </section>
+</Layout>

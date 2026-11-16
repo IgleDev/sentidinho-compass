@@ -1,0 +1,31 @@
+---
+const path = Astro.url.pathname;
+const links = [
+  { href: "/test", label: "Test" },
+  { href: "/personaxes", label: "Personaxes" },
+];
+---
+
+<header class="border-b border-neutral-200 bg-white/80 backdrop-blur sticky top-0 z-10">
+  <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+    <a href="/" class="flex items-center gap-2 font-bold tracking-tight">
+      <span class="inline-block h-4 w-4 rounded-full bg-galego-500"></span>
+      Sentidiño Compass
+    </a>
+    <nav class="flex gap-5 text-sm font-medium">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class:list={[
+              "transition-colors hover:text-galego-600",
+              path.startsWith(l.href) ? "text-galego-600" : "text-neutral-600",
+            ]}
+          >
+            {l.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>
